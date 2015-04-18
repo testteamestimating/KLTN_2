@@ -46,4 +46,39 @@ app.controller('projectCtrl', function($scope, $rootScope, $http) {
 		};
 		return object;
 	};
+	
+	$scope.initProjectObject2 = function() {
+		var object = {
+			"id" : $scope.id,
+			"projectName" : $scope.newname,
+			"description" : $scope.newdescription,
+			"projectTypeId": $scope.projectTypeId
+		};
+		return object;
+	};
+	
+	$scope.init2 = function() {
+		var object = {
+				"projectId" : $scope.id,
+				"projectName" : $scope.projects[id].projectName,
+				"description" : $scope.projects[id].description,
+				"projectTypeId": 1
+		};
+		return object;
+	};
+	
+	
+	
+	$scope.updateProject = function() {
+		alert("abc" + $scope.projects[2].projectTypeId);
+		var url = "project/update";
+		var requestObject3 = $scope.initProjectObject2();
+		//var requestObject2 = $scope.init2();
+		$http.post(url, requestObject3).
+		success(function(response) {
+			alert("OK");
+		}).
+		error(function() {
+		});
+	};
 });

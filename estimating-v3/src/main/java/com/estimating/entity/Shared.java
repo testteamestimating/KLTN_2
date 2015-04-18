@@ -19,15 +19,15 @@ public class Shared extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
-	@JoinColumn(name = "projectId")
+	@JoinColumn(name = "projectId", nullable = false)
 	private Project project;
 	
 	@ManyToOne
-	@JoinColumn(name = "owner_user")
+	@JoinColumn(name = "owner_user", nullable = false)
 	private Users owner_user;
 	
 	@ManyToOne
-	@JoinColumn(name = "share_user")
+	@JoinColumn(name = "share_user", nullable = false)
 	private Users share_user;
 
 	/**

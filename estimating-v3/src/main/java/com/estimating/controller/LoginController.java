@@ -7,11 +7,15 @@ import org.apache.log4j.Logger;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.estimating.bean.UserBean;
 
 @Controller
-public class LoginController {
+public class LoginController extends AbstractBaseController {
 	private static final Logger logger = Logger.getLogger(LoginController.class);
 	
 	
@@ -42,5 +46,13 @@ public class LoginController {
 	public String doDeny() {
 		logger.info("Access denied!");
 		return "login";
+	}
+	
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	@ResponseBody
+	public UserBean addNewUser(@RequestBody UserBean userBean) {
+		UserBean bean = new UserBean();
+		bean = userService.create(userBean);
+		return 	bean;
 	}
 }

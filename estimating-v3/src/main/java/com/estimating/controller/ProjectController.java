@@ -39,4 +39,13 @@ public class ProjectController extends AbstractBaseController {
 		projectBean.setUsername(username);
 		return projectService.create(projectBean);
 	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@ResponseBody
+	public ProjectBean update(@RequestBody ProjectBean projectBean, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String username = (String)session.getAttribute("username");
+		projectBean.setUsername(username);
+		return projectService.update(projectBean);
+	}
 }

@@ -59,7 +59,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
         .state('myproject', {
             url: '/myproject',
-            templateUrl: 'views/myproject.html' 
+            templateUrl: 'views/myproject.html',
+            controller: 'projectCtrl'
         })
         .state('share_project', {
             url: '/share_project',
@@ -68,6 +69,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('about', {
             url: '/about',
             templateUrl: 'about.html' 
+        })
+       .state('login', {
+            url: '/login',
+            templateUrl: 'login.jsp',
+            controller:'userCrtl'
         })
        
 });

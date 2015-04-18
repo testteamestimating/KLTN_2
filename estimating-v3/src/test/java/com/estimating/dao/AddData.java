@@ -292,16 +292,16 @@ public class AddData {
 		List<UserType> userTypes = new ArrayList<UserType>();
 		userTypes.add(userTypeDao.findOneById(1));
 		userTypes.add(userTypeDao.findOneById(2));
-		users.add(new Users("longnguyen", "thanhlong@123", date, userTypes.get(1)));
-		users.add(new Users("vuhung", "vuhung123", date, userTypes.get(1)));
-		users.add(new Users("tamnguyen", "tamnguyen@123", date, userTypes.get(0)));
-		users.add(new Users("minhtri", "minhtri@123", date, userTypes.get(0)));
-		users.add(new Users("thangloi", "thangloi@123", date, userTypes.get(0)));
-		users.add(new Users("thanhmai", "thanhmai@123", date, userTypes.get(0)));
-		users.add(new Users("anhvu", "anhvu@123", date, userTypes.get(1)));
-		users.add(new Users("myhue", "muhue@123", date, userTypes.get(0)));
-		users.add(new Users("thienviet", "thienviet@123", date, userTypes.get(1)));
-		users.add(new Users("minhthai", "minhthai@123", date, userTypes.get(0)));
+		users.add(new Users("longnguyen@gmail.com", "$2a$10$M9N4GPSNyPjpCyxMya/p6OG.dH3bnlfC1tX9AxxRJ8AUwLePoQxUu", date, userTypes.get(1)));
+		users.add(new Users("vuhung@gmail.com", "$2a$10$M9N4GPSNyPjpCyxMya/p6OG.dH3bnlfC1tX9AxxRJ8AUwLePoQxUu", date, userTypes.get(1)));
+		users.add(new Users("tamnguyen@gmail.com", "$2a$10$M9N4GPSNyPjpCyxMya/p6OG.dH3bnlfC1tX9AxxRJ8AUwLePoQxUu", date, userTypes.get(0)));
+		users.add(new Users("minhtri@gmaill.com", "$2a$10$M9N4GPSNyPjpCyxMya/p6OG.dH3bnlfC1tX9AxxRJ8AUwLePoQxUu", date, userTypes.get(0)));
+		users.add(new Users("thangloi@yahoo.com", "$2a$10$M9N4GPSNyPjpCyxMya/p6OG.dH3bnlfC1tX9AxxRJ8AUwLePoQxUu", date, userTypes.get(0)));
+		users.add(new Users("thanhmai@hotmail.com", "$2a$10$M9N4GPSNyPjpCyxMya/p6OG.dH3bnlfC1tX9AxxRJ8AUwLePoQxUu", date, userTypes.get(0)));
+		users.add(new Users("anhvu@gmail.com", "$2a$10$M9N4GPSNyPjpCyxMya/p6OG.dH3bnlfC1tX9AxxRJ8AUwLePoQxUu", date, userTypes.get(1)));
+		users.add(new Users("myhue@gmail.com", "$2a$10$M9N4GPSNyPjpCyxMya/p6OG.dH3bnlfC1tX9AxxRJ8AUwLePoQxUu", date, userTypes.get(0)));
+		users.add(new Users("thienviet@gmail.com", "t$2a$10$M9N4GPSNyPjpCyxMya/p6OG.dH3bnlfC1tX9AxxRJ8AUwLePoQxUu", date, userTypes.get(1)));
+		users.add(new Users("minhthai@gmail.com", "$2a$10$M9N4GPSNyPjpCyxMya/p6OG.dH3bnlfC1tX9AxxRJ8AUwLePoQxUu", date, userTypes.get(0)));
 		int i =0;
 		while(i<10) {
 			userDao.create(users.get(i));

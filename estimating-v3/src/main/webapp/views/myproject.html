@@ -1,4 +1,26 @@
-<div class="note note-success">
-	<h4 class="block">Myproject UI</h4>
-	<h6>2015 &copy; Estimating by LongNguyen.</h6>
-</div>
+ <div class="row">
+ 	 <p>list project </p>
+	 <select class="form-control select2me" data-placeholder="Select..." ng-model="id">
+	 	<option ng-repeat="item in projects" value="{{item.id}}" >{{item.projectName}}</option>
+	 </select>
+ </div>
+ <div class="row">
+ 	<p>project name</p>
+	 <input type="text" class="form-control input-circle" ng-model="newname"  placeholder="{{projects[id-1].projectName}}" >
+	 New name is: <span ng-bind="newname"></span>
+ </div>
+<!--  <button type="button" class="btn blue" ng-click="getProjectId()">CREATE</button> -->
+ <div class="row">
+ 	<p>project description</p>
+ 	<input type="text" class="form-control input-circle" ng-model="newdescription" placeholder="{{projects[id-1].description}}">
+ 	New name is: <span ng-bind="newdescription"></span>
+ </div>
+ <div class="row">
+ 	Old projecttype: <span ng-bind="projects[id-1].projecttypeId"></span>
+ 	<p>choose new project type</p>
+ 	<select class="form-control select2me" ng-model="projectTypeId" data-placeholder="Select...">
+ 		<option ng-repeat="item in projectTypes" placeholder="along"  value="{{item.id}}" >{{item.typeName}}</option>
+ 	</select>
+ </div>
+ <button type="button" class="btn blue" ng-click="updateProject()">CHANGE</button>
+ 

@@ -28,7 +28,7 @@ public class Users  implements Serializable {
 	private DateEmbedded date;
 
 	@ManyToOne
-	@JoinColumn(name = "utId")
+	@JoinColumn(name = "utId", nullable = false)
 	private UserType userType;
 	
 	@OneToMany(mappedBy = "owner_user")

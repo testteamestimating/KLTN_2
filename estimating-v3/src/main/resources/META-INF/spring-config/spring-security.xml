@@ -20,6 +20,7 @@
 
 		<!-- PermitAll -->
 		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/signup" access="permitAll" />
 	
 		<!-- ROLE_REGULAR -->
 

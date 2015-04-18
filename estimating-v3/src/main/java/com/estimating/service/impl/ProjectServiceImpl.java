@@ -46,5 +46,18 @@ public class ProjectServiceImpl extends AbstractBaseService implements IProjectS
 		projectDao.create(project);
 		return projectBean;
 	}
+	
+	@Override
+	public ProjectBean update(ProjectBean projectBean) {
+		Project project = projectDao.findOneById(projectBean.getId());
+		project.setProjectName(projectBean.getProjectName());
+		project.setDescription(projectBean.getDescription());
+		ProjectType projectType = projectTypeDao.findOneById(projectBean.getProjectTypeId());
+		Users user = userDao.findOneByName(projectBean.getUsername());
+		project.setProjectType(projectType);
+		project.setUser(user);
+		projectDao.update(project);
+		return projectBean;
+	}
 
 }

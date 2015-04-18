@@ -1,5 +1,7 @@
 package com.estimating.service.core;
 
-public interface IUserService {
+import com.estimating.bean.UserBean;
 
+public interface IUserService {
+	public UserBean create(UserBean userBean);
 }
