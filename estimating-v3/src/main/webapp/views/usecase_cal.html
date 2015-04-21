@@ -1,66 +1,31 @@
 <div class="row">
 	<div class="col-md-4">
 		<ul class="ver-inline-menu tabbable margin-bottom-10">
-			<li class="active">
-				<a data-toggle="tab" href="#tab_1">
-				<i >St.1</i> Select or create project </a>
-				<span class="after">
-				</span>
-			</li>
 			<li>
-				<a data-toggle="tab" href="#tab_2">
+				<a data-toggle="tab" href="#tab_1">
 				<i>St.2</i> Unadjusted Use Case Weight </a>
 			</li>
 			<li>
-				<a data-toggle="tab" href="#tab_3">
+				<a data-toggle="tab" href="#tab_2">
 				<i>St.3</i> Unadjusted Actor Weight </a>
 			</li>
 			<li>
-				<a data-toggle="tab" href="#tab_4">
+				<a data-toggle="tab" href="#tab_3">
 				<i>St.4</i> Technical Complexity Factor Cal </a>
 			</li>
 			<li>
-				<a data-toggle="tab" href="#tab_5">
+				<a data-toggle="tab" href="#tab_4">
 				<i>St.5</i> Environmental Complexity Factor Cal </a>
 			</li>
 			<li>
-				<a data-toggle="tab" href="#tab_6">
+				<a data-toggle="tab" href="#tab_5">
 				<i>St.6</i> Comfim and result </a>
 			</li>
 		</ul>
 	</div>
 	<div class="col-md-8">
 		<div class="tab-content">
-			<div id="tab_1" class="tab-pane active">
-				<div id="accordion1" class="panel-group">
-					<div class="panel panel-success">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-							<p class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1">
-							Choose already exists project or create new </p>
-							</h4>
-						</div>
-						<div id="accordion1_1" class="panel-collapse collapse in">
-							<div class="panel-body">
-								 <div class="form-group">
-									<label class="control-label col-md-3">Peoject's name:</label>
-									<div class="col-md-5">
-										<select class="form-control select2me" data-placeholder="Select...">
-											<option ng-repeat="project in projects" value="{{project.id}}">{{project.projectName}}</option>
-										</select>
-										<span class="help-block">
-										Chose project </span>
-									</div>	
-									<a data-toggle="modal" href="#responsive" class="btn green">
-									Create <i class="fa fa-plus"></i>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="tab_2" class="tab-pane">
+			<div id="tab_1" class="tab-pane">
 				<div id="accordion2" class="panel-group">
 					<div class="panel panel-warning">
 						<div class="panel-heading">
@@ -71,60 +36,79 @@
 						</div>
 						<div id="accordion2_1" class="panel-collapse collapse in">
 							<div class="panel-body">
-							<table data-editable data-editable-spy data-navigable-spy class="table table-hover table-striped">
-								    <thead>
-								      <tr>
-								        <th>SimPle</th>
-								      </tr>
-								    </thead>
-								    <tbody>
-								    
-								      <tr>
-								        <td><input name="name_uSimPle" placeholder="Usecase simple"></td>
-								        <td>
-								          <span data-remove><a href="#">X</a></span>
-								        </td>
-								      </tr>
-								    </tbody>
-							  </table>
-							  <table data-editable data-editable-spy data-navigable-spy class="table table-hover table-striped">
-								    <thead>
-								      <tr>
-								        <th>Average</th>
-								      </tr>
-								    </thead>
-								    <tbody>
-					
-								      <tr>
-								        <td><input name="name_uAverage" placeholder="Usecase Average"></td>
-								        <td>
-								          <span data-remove><a href="#">X</a></span>
-								        </td>
-								      </tr>
-								    </tbody>
-							  </table>
-							   <table data-editable data-editable-spy data-navigable-spy class="table table-hover table-striped">
-								    <thead>
-									    <tr>
-									      <th>Comlpex</th>
-									     </tr>
-								    </thead>
-								    <tbody>
-					
-								      <tr>
-								        <td><input name="name_uComlpex" placeholder="Usecase Comlpex"></td>
-								        <td>
-								          <span data-remove><a href="#">X</a></span>
-								        </td>
-								      </tr>
-								    </tbody>
-							  </table>
+							<!-- Simple Table -->
+								<label class="col-md-3">User simple name: </label>
+								<form class="form-horizontal" role="form" ng-submit="addRowSimple()">
+									<div class="row col-md-9">
+										<div class="col-md-8">
+											<input type="text" class="form-control" name="uAverageValue"
+												ng-model="uSimpleValue" />
+										</div>
+										<div class="col-md-1">								
+											<input type="submit" value="Add" class="btn btn-primary"/>
+										</div>
+									</div>
+								</form>
+							  <table class="table">
+									<tr ng-repeat="uSimple in uSimples" class="row col-md-12">
+										<td class="col-md-10">{{uSimple.uSimpleValue}}</td>
+										<td class="col-md-2">
+										<input type="button" value="Remove" class="btn btn-danger" ng-click="removeRowSimple(uSimple.uSimpleValue)"/>
+										</td>
+									</tr>
+								</table>
+							<!-- End Simple Table -->  
+							
+							<!-- Average table -->		
+								<label class="col-md-3">User average name: </label>
+								<form class="form-horizontal "  role="form" ng-submit="addRowAverage()">
+									<div class=" row col-md-9" >
+										<div class="  col-md-8">
+											<input type="text" class="form-control" name="uAverageValue"
+												ng-model="uAverageValue" />
+										</div>
+										<div class=" col-md-1">								
+											<input type="submit" value="Add" class="btn btn-primary"/>
+										</div>
+									</div>
+								</form>
+							  <table class="table">
+									<tr ng-repeat="uAverage in uAverages" class="row col-md-12">
+										<td class="col-md-10">{{uAverage.uAverageValue}}</td>
+										<td class="col-md-2">
+										<input type="button" value="Remove" class="btn btn-danger" ng-click="removeAverage(uAverage.uAverageValue)"/>
+										</td>
+									</tr>
+								</table>					  
+							<!-- end Average table -->	
+							<!-- complex table -->		
+								<label class="col-md-3">User Complex name: </label>
+								<form class="form-horizontal" role="form" ng-submit="addRowuComplex()">
+									<div class="row col-md-9">
+										<div class="col-md-8">
+											<input type="text" class="form-control" name="uComplexValue"
+												ng-model="uComplexValue" />
+										</div>
+										<div class="col-md-1">								
+											<input type="submit" value="Add" class="btn btn-primary"/>
+										</div>
+									</div>
+								</form>
+							  <table class="table">
+									<tr ng-repeat="uComplex in uComplexs" class="row col-md-12">
+										<td class="col-md-10">{{uComplex.uComplexValue}}</td>
+										<td class="col-md-2">
+										<input type="button" value="Remove" class="btn btn-danger" ng-click="removeuComplex(uComplex.uComplexValue)"/>
+										</td>
+									</tr>
+								</table>				  
+							<!-- end complex table -->						  
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div id="tab_3" class="tab-pane">
+			<div id="tab_2" class="tab-pane">
 				<div id="accordion3" class="panel-group">
 					<div class="panel panel-danger">
 						<div class="panel-heading">
@@ -135,57 +119,78 @@
 						</div>
 						<div id="accordion3_1" class="panel-collapse collapse in">
 							<div class="panel-body">
-								<table data-editable data-editable-spy data-navigable-spy class="table table-hover table-striped">
-								    <thead>
-								      <tr>
-								        <th>Actor Simple:</th>
-								      </tr>
-								    </thead>
-								    <tbody>
-								      <tr>
-								        <td><input name="name_aSimple" placeholder="actor simple..."></td>
-								        <td>
-								          <span data-remove><a href="#">X</a></span>
-								        </td>
-								      </tr>
-								    </tbody>
-							  </table>
-								<table data-editable data-editable-spy data-navigable-spy class="table table-hover table-striped">
-								    <thead>
-								      <tr>
-								        <th>Actor Average:</th>
-								      </tr>
-								    </thead>
-								    <tbody>
-								      <tr>
-								        <td><input name="name_aAverage" placeholder="actor average..."></td>
-								        <td>
-								          <span data-remove><a href="#">x</a></span>
-								        </td>
-								      </tr>
-								    </tbody>
-							  </table>
-								<table data-editable data-editable-spy data-navigable-spy class="table table-hover table-striped">
-								    <thead>
-								      <tr>
-								        <th>Actor Complex</th>
-								      </tr>
-								    </thead>
-								    <tbody>
-								      <tr>
-								        <td><input name="name_aComplex" placeholder="actor comlpex..."></td>
-								        <td>
-								          <span data-remove><a href="#">X</a></span>
-								        </td>
-								      </tr>
-								    </tbody>
-							  </table>
+								<!-- actor simple table -->
+								<label class="col-md-3">Actor simple name: </label>
+								<form class="form-horizontal" role="form" ng-submit="addRowaSimple()">
+									<div class="row col-md-9">
+										<div class="col-md-8">
+											<input type="text" class="form-control" name="asimpleValue"
+												ng-model="asimpleValue" />
+										</div>
+										<div class="col-md-1">								
+											<input type="submit" value="Add" class="btn btn-primary"/>
+										</div>
+									</div>
+								</form>
+								  <table class="table">
+										<tr ng-repeat="aSimple in aSimples" class="row col-md-12">
+											<td class="col-md-10">{{aSimple.asimpleValue}}</td>
+											<td class="col-md-2">
+											<input type="button" value="Remove" class="btn btn-danger" ng-click="removeaSimple(aSimple.asimpleValue)"/>
+											</td>
+										</tr>
+									</table>
+								<!-- end actor simple table -->
+								<!-- actor average table -->
+									<label class="col-md-3">Actor average name: </label>
+									<form class="form-horizontal" role="form" ng-submit="addRowaAverage()">
+										<div class="row col-md-9">
+											<div class="col-md-8">
+												<input type="text" class="form-control" name="aAverageValue"
+													ng-model="aAverageValue" />
+											</div>
+											<div class="col-md-1">								
+												<input type="submit" value="Add" class="btn btn-primary"/>
+											</div>
+										</div>
+									</form>
+									  <table class="table">
+											<tr ng-repeat="aAverage in aAverages" class="row col-md-12">
+												<td class="col-md-10">{{aAverage.aAverageValue}}</td>
+												<td class="col-md-2">
+												<input type="button" value="Remove" class="btn btn-danger" ng-click="removeaAverage(aAverage.aAverageValue)"/>
+												</td>
+											</tr>
+									</table>
+								<!-- end actor average table -->
+								<!-- actor comlpex table -->
+									<label class="col-md-3">Actor complex name: </label>
+									<form class="form-horizontal" role="form" ng-submit="addRowaComlpex()" >
+										<div class="row col-md-9">
+											<div class="col-md-8">
+												<input type="text" class="form-control" name="aComlpexValue"
+													ng-model="aComlpexValue" />
+											</div>
+											<div class="col-md-1">								
+												<input type="submit" value="Add" class="btn btn-primary"/>
+											</div>
+										</div>
+									</form>
+									  <table class="table" class="col-md-12">
+											<tr ng-repeat="aComplex in aComplexs">
+												<td class="col-md-10">{{aComplex.aComlpexValue}}</td>
+												<td class="col-md-2">
+												<input type="button" value="Remove" class="btn btn-danger" ng-click="removeaComplex(aComplex.aComlpexValue)"/>
+												</td>
+											</tr>
+									</table>
+								<!-- end actor comlpex table -->
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div id="tab_4" class="tab-pane">
+			<div id="tab_3" class="tab-pane">
 				<div id="accordion4" class="panel-group">
 					<div class="panel panel-danger">
 						<div class="panel-heading">
@@ -195,15 +200,15 @@
 							<div class="form-group">
 								<div class="col-md-6">
 									<div class="margin-bottom-10">
-										<select class="bs-select form-control " data-style="blue" id="distributed">
-											<option value="0">Distributed system level 0</option>
-											<option value="1">Distributed system level 1</option>
-											<option value="2">Distributed system level 2</option>
-											<option value="3">Distributed system level 3</option>
-											<option value="4">Distributed system level 4</option>
-											<option value="5">Distributed system level 5</option>
+										<select class="bs-select form-control " ng-model="distributedId" placeholder="Choose value" data-style="blue" id="distributed" ng-init="distributedId=0 | num">
+											<option value="0">distributed level 0</option>
+											<option value="1">distributed level 1</option>
+											<option value="2">distributed level 2</option>
+											<option value="3">distributed level 3</option>
+											<option value="4">distributed level 4</option>
+											<option value="5">distributed level 5</option>
 										</select>
-										<select class="bs-select form-control " data-style="blue" id="performance">
+										<select class="bs-select form-control " data-style="blue" id="performance" ng-model="performanceId" ng-init="performanceId=0| num">
 											<option value="0">Performance objectives level 0</option>
 											<option value="1">Performance objectives level 1</option>
 											<option value="2">Performance objectives level 2</option>
@@ -211,7 +216,7 @@
 											<option value="4">Performance objectives level 4</option>
 											<option value="5">Performance objectives level 5</option>
 										</select>
-										<select class="bs-select form-control " data-style="blue" id="endUserefficiency">
+										<select class="bs-select form-control " data-style="blue" id="endUserefficiency" ng-model="endUserefficiencyId" ng-init="endUserefficiencyId=0| num">
 											<option value="0">End-user efficiency level 0</option>
 											<option value="1">End-user efficiency level 1</option>
 											<option value="2">End-user efficiency level 2</option>
@@ -219,7 +224,7 @@
 											<option value="4">End-user efficiency level 4</option>
 											<option value="5">End-user efficiency level 5</option>
 										</select>
-										<select class="bs-select form-control " data-style="blue" id="complexProcessing">
+										<select class="bs-select form-control " data-style="blue" id="complexProcessing" ng-model="complexProcessingId" ng-init="complexProcessingId=0| num">
 											<option value="0">Complex Processing level 0</option>
 											<option value="1">Complex Processing level 1</option>
 											<option value="2">Complex Processing level 2</option>
@@ -227,7 +232,7 @@
 											<option value="4">Complex Processing level 4</option>
 											<option value="5">Complex Processing level 5</option>
 										</select>
-										<select class="bs-select form-control " data-style="blue" id="easeofInstallation">
+										<select class="bs-select form-control " data-style="blue" id="easeofInstallation" ng-model="easeofInstallationId" ng-init="easeofInstallationId=0 | num">
 											<option value="0">Ease of Installation level 0</option>
 											<option value="1">Ease of Installation level 1</option>
 											<option value="2">Ease of Installation level 2</option>
@@ -235,7 +240,7 @@
 											<option value="4">Ease of Installation level 4</option>
 											<option value="5">Ease of Installation level 5</option>
 										</select>
-										<select class="bs-select form-control " data-style="blue" id="easeofUse">
+										<select class="bs-select form-control " data-style="blue" id="easeofUse" ng-model="easeofUseId" ng-init="easeofUseId=0 | num">
 											<option value="0">Ease of Use level 0</option>
 											<option value="1">Ease of Use level 1</option>
 											<option value="2">Ease of Use level 2</option>
@@ -243,7 +248,7 @@
 											<option value="4">Ease of Use level 4</option>
 											<option value="5">Ease of Use level 5</option>
 										</select>
-										<select class="bs-select form-control " data-style="blue" id="portable">
+										<select class="bs-select form-control " data-style="blue" id="portable" ng-model="portableId" ng-init="portableId=0 | num">
 											<option value="0">Portable level 0</option>
 											<option value="1">Portable level 1</option>
 											<option value="2">Portable level 2</option>
@@ -256,7 +261,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="margin-bottom-10">
-										<select class="bs-select form-control " data-style="blue" id="easeofChange">
+										<select class="bs-select form-control " data-style="blue" id="easeofChange" ng-model="easeofChangeId" ng-init="easeofChangeId=0 | num">
 											<option value="0">Ease of Change level 0</option>
 											<option value="1">Ease of Change level 1</option>
 											<option value="2">Ease of Change level 2</option>
@@ -264,7 +269,7 @@
 											<option value="4">Ease of Change level 4</option>
 											<option value="5">Ease of Change level 5</option>
 										</select>
-										<select class="bs-select form-control " data-style="blue" id="concurrentUse">
+										<select class="bs-select form-control " data-style="blue" id="concurrentUse" ng-model="concurrentUseId" ng-init="concurrentUseId=0 | num">
 											<option value="0">Concurrent Use level 0</option>
 											<option value="1">Concurrent Use level 1</option>
 											<option value="2">Concurrent Use level 2</option>
@@ -272,7 +277,7 @@
 											<option value="4">Concurrent Use level 4</option>
 											<option value="5">Concurrent Use level 5</option>
 										</select>
-										<select class="bs-select form-control " data-style="blue" id="specialSecurity">
+										<select class="bs-select form-control " data-style="blue" id="specialSecurity" ng-model="specialSecurityId" ng-init="specialSecurityId=0 | num">
 											<option value="0">Special Security level 0</option>
 											<option value="1">Special Security level 1</option>
 											<option value="2">Special Security level 2</option>
@@ -280,7 +285,7 @@
 											<option value="4">Special Security level 4</option>
 											<option value="5">Special Security level 5</option>
 										</select>
-										<select class="bs-select form-control " data-style="blue" id="accessforThirdParties">
+										<select class="bs-select form-control " data-style="blue" id="accessforThirdParties" ng-model="accessforThirdPartiesId" ng-init="accessforThirdPartiesId=0 | num">
 											<option value="0">Access for Third Parties level 0</option>
 											<option value="1">Access for Third Parties level 1</option>
 											<option value="2">Access for Third Parties level 2</option>
@@ -288,7 +293,7 @@
 											<option value="4">Access for Third Parties level 4</option>
 											<option value="5">Access for Third Parties level 5</option>
 										</select>
-										<select class="bs-select form-control " data-style="blue" id="trainingNeeds">
+										<select class="bs-select form-control " data-style="blue" id="trainingNeeds" ng-model="trainingNeedsId" ng-init="trainingNeedsId=0 | num">
 											<option value="0">Training Needs level 0</option>
 											<option value="1">Training Needs level 1</option>
 											<option value="2">Training Needs level 2</option>
@@ -296,7 +301,7 @@
 											<option value="4">Training Needs level 4</option>
 											<option value="5">Training Needs level 5</option>
 										</select>
-										<select class="bs-select form-control " data-style="blue" id="reusableCode">
+										<select class="bs-select form-control " data-style="blue" id="reusableCode" ng-model="reusableCodeId" ng-init="reusableCodeId=0 | num">
 											<option value="0">Reusable Code level 0</option>
 											<option value="1">Reusable Code level 1</option>
 											<option value="2">Reusable Code level 2</option>
@@ -312,8 +317,8 @@
 					</div>
 				</div>
 			</div>
-			<div id="tab_5" class="tab-pane">
-				<div id="accordion5" class="panel-group">
+			<div id="tab_4" class="tab-pane">
+				<div class="panel-group">
 					<div class="panel panel-danger">
 						<div class="panel-heading">
 							<h4 class="panel-title">Environmental Complexity Factor (ECF)</h4>
@@ -323,7 +328,7 @@
 								<div class="form-group">
 								<div class="col-md-6">
 									<div class="margin-bottom-10">
-										<select class="bs-select form-control " data-style="blue" id="familiarwithDevelopmentProcess">
+										<select class="bs-select form-control " data-style="blue" ng-init="familiarwithDevelopmentProcessId=0 | num" id="familiarwithDevelopmentProcess" ng-model="familiarwithDevelopmentProcessId">
 											<option value="0">Familiar with Development Process level 0</option>
 											<option value="1">Familiar with Development Process level 1</option>
 											<option value="2">Familiar with Development Process level 2</option>
@@ -331,7 +336,7 @@
 											<option value="4">Familiar with Development Process level 4</option>
 											<option value="5">Familiar with Development Process level 5</option>
 										</select>
-										<select class="bs-select form-control " data-style="blue" id="applicationExperience">
+										<select class="bs-select form-control " data-style="blue" ng-init="applicationExperienceId = 0 | num" id="applicationExperience" ng-model="applicationExperienceId">
 											<option value="0">Application Experience level 0</option>
 											<option value="1">Application Experience level 1</option>
 											<option value="2">Application Experience level 2</option>
@@ -339,7 +344,7 @@
 											<option value="4">Application Experience level 4</option>
 											<option value="5">Application Experience level 5</option>
 										</select>
-										<select class="bs-select form-control " data-style="blue" id="objectOrientedExperience">
+										<select class="bs-select form-control " data-style="blue" ng-init = "objectOrientedExperienceId = 0  | num" id="objectOrientedExperience" ng-model="objectOrientedExperienceId">
 											<option value="0">Object-Oriented Experience level 0</option>
 											<option value="1">Object-Oriented Experience level 1</option>
 											<option value="2">Object-Oriented Experience level 2</option>
@@ -347,7 +352,7 @@
 											<option value="4">Object-Oriented Experience level 4</option>
 											<option value="5">Object-Oriented Experience level 5</option>
 										</select>
-										<select class="bs-select form-control " data-style="blue" id="leadAnalystCapability">
+										<select class="bs-select form-control " data-style="blue" id="leadAnalystCapability" ng-model="leadAnalystCapabilityId" ng-init="leadAnalystCapabilityId=0 | num">
 											<option value="0">Lead Analyst Capability level 0</option>
 											<option value="1">Lead Analyst Capability level 1</option>
 											<option value="2">Lead Analyst Capability level 2</option>
@@ -359,7 +364,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="margin-bottom-10">
-										<select class="bs-select form-control " data-style="blue" id="motivation">
+										<select class="bs-select form-control " data-style="blue" id="motivation" ng-model="motivationId" ng-init="motivationId=0 | num">
 											<option value="0">Motivation level 0</option>
 											<option value="1">Motivation level 1</option>
 											<option value="2">Motivation level 2</option>
@@ -367,7 +372,7 @@
 											<option value="4">Motivation level 4</option>
 											<option value="5">Motivation level 5</option>
 										</select>
-										<select class="bs-select form-control " data-style="blue" id="stableRequirements">
+										<select class="bs-select form-control " data-style="blue" id="stableRequirements" ng-model="stableRequirementsId" ng-init="stableRequirementsId=0 | num">
 											<option value="0">Stable Requirements level 0</option>
 											<option value="1">Stable Requirements level 1</option>
 											<option value="2">Stable Requirements level 2</option>
@@ -375,7 +380,7 @@
 											<option value="4">Stable Requirements level 4</option>
 											<option value="5">Stable Requirements level 5</option>
 										</select>
-										<select class="bs-select form-control " data-style="blue" id="part-time-Staff">
+										<select class="bs-select form-control " data-style="blue" id="part-time-Staff" ng-model="partTimeStaffId" ng-init="partTimeStaffId=0 | num">
 											<option value="0">Part-time Staff level 0</option>
 											<option value="1">Part-time Staff level 1</option>
 											<option value="2">Part-time Staff level 2</option>
@@ -383,7 +388,7 @@
 											<option value="4">Part-time Staff level 4</option>
 											<option value="5">Part-time Staff level 5</option>
 										</select>
-										<select class="bs-select form-control " data-style="blue" id="difficulProgrammingLanguage">
+										<select class="bs-select form-control " data-style="blue" id="difficulProgrammingLanguage" ng-model="difficulProgrammingLanguageId" ng-init="difficulProgrammingLanguageId=0 | num">
 											<option value="0">Difficult Programming Language level 0</option>
 											<option value="1">Difficult Programming Language level 1</option>
 											<option value="2">Difficult Programming Language level 2</option>
@@ -399,7 +404,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="tab_6" class="tab-pane">
+			<div id="tab_5" class="tab-pane">
 				<div id="accordion5" class="panel-group">
 					<div class="panel panel-danger">
 						<div class="panel-heading">
@@ -417,7 +422,7 @@
 											Total Point
 										</div>
 										<div class="number">
-											 132,546.57
+											{{totalPoint}}
 										</div>
 										
 									</div>
@@ -433,7 +438,7 @@
 											 Total Hour
 										</div>
 										<div class="number">
-											 1,561.3
+											 {{totalHour}}
 										</div>
 									</div>
 									</a>
@@ -448,7 +453,7 @@
 											 Total Cost
 										</div>
 										<div class="number">
-											 1,549,453.4$
+											  {{totalCost}}
 										</div>
 									</div>
 									</a>
@@ -459,21 +464,21 @@
 										<div class="form-group">
 											<label class="col-md-3 control-label">Hour per task</label>
 											<div class="col-md-4">
-												<input type="text" class="form-control input-circle" placeholder="Enter hour">
+												<input type="text" class="form-control input-circle" ng-model="hourPerTask" placeholder="Enter hour">
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-md-3 control-label">Payment</label>
 											<div class="col-md-4">
 												<div class="input-group">
-													<input type="email" class="form-control input-circle" placeholder="enter payment">
+													<input type="text" class="form-control input-circle" ng-model="payment" placeholder="enter payment">
 												</div>
 											</div>
 										</div>
 									<div class="form-actions">
 										<div class="row">
 											<div class="col-md-offset-3 col-md-9">
-											<button type="submit" class="btn btn-circle blue">Preview</button>
+											<button type="submit" class="btn btn-circle blue" ng-click="review()">Preview</button>
 												<button type="submit" class="btn btn-circle blue">Finish</button>
 												<button type="button" class="btn btn-circle default">Cancel</button>
 											</div>
@@ -490,37 +495,3 @@
 	</div>
 </div>
 
-<!-- Create new project -->
-	<div id="responsive" class="modal fade" tabindex="-1" data-width="900">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-			<h4 class="modal-title">Create New Project</h4>
-		</div>
-		<div class="modal-body">
-			<form role="form">
-				<div class="form-body">
-					<div class="form-group form-md-line-input form-md-floating-label">
-						<input type="text" class="form-control" id="form_control_1" ng-model="projectName">
-						<label for="form_control_1">Project name:</label>
-						<span class="help-block">6-100 character, not use - / * + -</span>
-					</div>
-				
-					<div class="form-group form-md-line-input has-info">
-						<select class="form-control" id="form_control_2" ng-model="projectTypeId">
-							<option ng-repeat="item in projectTypes" value="{{item.id}}" >{{item.typeName}}</option>
-						</select>
-						<label for="form_control_2">Select project type</label>
-					</div>
-					<div class="form-group form-md-line-input form-md-floating-label">
-						<textarea class="form-control" rows="3" id="form_control_3"  ng-model="description"></textarea>
-						<label for="form_control_3">Description:</label>
-					</div>
-				</div>
-				
-			</form>
-		</div>
-		<div class="modal-footer">
-			<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
-			<button type="button" class="btn blue" ng-click="addNewProject()">CREATE</button>
-		</div>
-	</div>

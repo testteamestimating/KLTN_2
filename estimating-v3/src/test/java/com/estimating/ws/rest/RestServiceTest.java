@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.estimating.bean.UsecasePointBean;
 import com.estimating.bean.WusWeightBean;
 import com.estimating.dao.TestConfig;
 import com.estimating.dao.core.PersistenceContext;
@@ -19,6 +20,7 @@ public class RestServiceTest {
 	
 	// Resource Bean
 	WusWeightBean wusWeightBean;
+	UsecasePointBean usecasePointBean;
 	
 	@Before
 	public void setup() {
@@ -29,5 +31,10 @@ public class RestServiceTest {
 	public void calWusWeigthTest() {
 		double result = useCasePointRestWS.calWusWeight(wusWeightBean);
 		Assert.assertEquals(String.valueOf("39.0"), String.valueOf(result));
+	}
+	
+	public void calTotalPoint() {
+	//	usecasePointBean ;
+		double result = useCasePointRestWS.calTotalPoint(usecasePointBean);
 	}
 }

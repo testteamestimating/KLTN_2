@@ -22,12 +22,17 @@
 <link href="lib/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css"/>
 <!-- END GLOBAL MANDATORY STYLES -->
 <!-- BEGIN PAGE LEVEL STYLES -->
+
+
 <link href="lib/assets/global/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet" type="text/css"/>
 <link href="lib/assets/global/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" type="text/css" href="lib/assets/global/plugins/select2/select2.css"/>
 <link rel="stylesheet" type="text/css" href="lib/assets/global/plugins/bootstrap-select/bootstrap-select.min.css"/>
 <link rel="stylesheet" type="text/css" href="lib/assets/global/plugins/jquery-multi-select/css/multi-select.css"/>
-<link rel="stylesheet" type="text/css" href="lib/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
+
+<link rel="stylesheet" type="text/css" href="lib/angular-material.css"/>
+<!-- <link rel="stylesheet" type="text/css" href="lib/bootstrap.css"/> -->
+
 <!-- END PAGE LEVEL STYLES -->
 <!-- BEGIN THEME STYLES -->
 <link href="lib/assets/global/css/components-md.css" id="style_components" rel="stylesheet" type="text/css"/>
@@ -42,7 +47,7 @@
 <link rel="shortcut icon" href="favicon.ico"/>
 </head>
 
-<body ng-app="estimatingApp" class="page-md page-boxed page-header-fixed page-container-bg-solid page-sidebar-closed-hide-logo" >
+<body ng-app="estimatingApp" class="page-md page-boxed page-header-fixed page-container-bg-solid page-sidebar-closed-hide-logo">
 <!-- BEGIN HEADER -->
 <div class="page-header md-shadow-z-1-i navbar navbar-fixed-top">
 	<!-- BEGIN HEADER INNER -->
@@ -370,6 +375,8 @@
 				<!-- BEGIN PAGE CONTENT-->
 				<div class="row">
 					<div class="col-md-12">
+						<div ui-view="selectProject"></div>
+						<div ui-view="calculate"></div>
 						<div ui-view></div>
 					</div>
 				</div>
@@ -392,9 +399,6 @@
 <script src="lib/assets/global/plugins/respond.min.js"></script>
 <script src="lib/assets/global/plugins/excanvas.min.js"></script> 
 <![endif]-->
-<script src="lib/angular.js" type="text/javascript"></script>
-<script src="lib/angular-route.js" type="text/javascript"></script>
-<script src="lib/angular-ui-router.min.js" type="text/javascript"></script>
 <!-- <script src="lib/app.js" type="text/javascript"></script> -->
 <script src="lib/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
 <script src="lib/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
@@ -411,7 +415,6 @@
 <script src="lib/assets/global/scripts/metronic.js" type="text/javascript"></script>
 <script src="lib/assets/admin/layout2/scripts/layout.js" type="text/javascript"></script>
 <script src="lib/assets/admin/layout2/scripts/demo.js" type="text/javascript"></script>
- <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
  <!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-route.js"></script> -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="lib/assets/global/plugins/bootstrap-modal/js/bootstrap-modalmanager.js" type="text/javascript"></script>
@@ -427,9 +430,21 @@
 <script src="lib/bootstrap-expandable-input.js"></script>
 <script src="lib/bootstrap-editable-table.js"></script>
 
+<!-- Angular -->
+<script src="lib/angular.js" type="text/javascript"></script>
+<script src="lib/angular-animate.js"></script>
+<script src="lib/angular-aria.js"></script>
+<script src="lib/angular-material.js"></script>
+<script src="lib/hammer.js"></script>
+<script src="lib/angular-sanitize.js"></script>
+<script src="lib/angular-ui-router.min.js" type="text/javascript"></script>
+<script src="lib/angular-route.js" type="text/javascript"></script>
+
 <!-- Estimating Javascript -->
 <script src="js/app.js" type="text/javascript"></script>
-<script src="js/project.js" type="text/javascript"></script>
+<script src="js/projectCtrl.js" type="text/javascript"></script>
+<script src="js/usecaseCtrl.js" type="text/javascript"></script>
+<script src="js/filter.js" type="text/javascript"></script>
 
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
@@ -442,6 +457,7 @@
 		Demo.init(); // init demo features
 		TableEditable.init();
 		ComponentsDropdowns.init();
+		TableAdvanced.init();
 		//UIExtendedModals.init();
 	});
        

@@ -1,17 +1,34 @@
 'use-strict'
-var app = angular.module('estimatingApp', ['ui.router']);
+var app = angular.module('estimatingApp', ['ui.router', 'ngMaterial', 'ngSanitize']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
     
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/usecase-cal');
     
     $stateProvider
         
         // HOME STATES AND NESTED VIEWS ========================================
         .state('usecase_cal', {
             url: '/usecase-cal',
-            templateUrl: 'views/usecase_cal.html',
-            controller: 'projectCtrl'
+            views: {
+            	'selectProject':{
+            		 templateUrl: 'views/component/selectPrpject_view.html',
+                     controller: 'projectCtrl'
+            	},
+            	'calculate' :{
+            		templateUrl: 'views/usecase_cal.html',
+            		controller: 'usecaseCtrl'
+            	},
+            },
+           /* view: {
+            	'calculate' :{
+	            	templateUrl: 'views/usecase_cal.html',
+	            	controller: 'usecaseCtrl'
+            	},
+            }
+           */
+           /* templateUrl: 'views/usecase_cal.html',
+        	controller: 'usecaseCtrl'*/
         })
         
         // nested list with custom controller
