@@ -23,7 +23,7 @@ public class UseCasePointController {
 		return useCasePointService.calWusWeight(wusWeightBean);
 	}
 	
-	@RequestMapping(value = "/calWssWeight", method = RequestMethod.POST)
+	@RequestMapping(value = "/calWasWeight", method = RequestMethod.POST)
 	public double calWssWeight(@RequestBody WasWeightBean wasWeightBean) {
 		return useCasePointService.calWasWeight(wasWeightBean);
 	}

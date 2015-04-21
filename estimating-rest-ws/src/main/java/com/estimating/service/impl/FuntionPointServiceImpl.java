@@ -1,5 +1,7 @@
 package com.estimating.service.impl;
 
+import org.springframework.stereotype.Service;
+
 import com.estimating.bean.EiWeightBean;
 import com.estimating.bean.EifWeightBean;
 import com.estimating.bean.EoWeightBean;
@@ -15,6 +17,7 @@ import com.estimating.enums.FunctionPointEnum;
 import com.estimating.enums.IlfWeightEnum;
 import com.estimating.service.IFunctionPointService;
 
+@Service
 public class FuntionPointServiceImpl implements IFunctionPointService {
 
 	@Override
