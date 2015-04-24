@@ -122,6 +122,51 @@
 						]]>
 					</value>
 				</entry>
+				
+				<!-- find last insert from table wasWeight  -->
+				<entry key="findLastWasWeight">
+					<value>
+						<![CDATA[
+							SELECT * FROM was_weight ORDER BY was_id DESC LIMIT 1;
+						]]>
+					</value>
+				</entry>
+				
+				<!-- find last insert from table wusWeight  -->
+				<entry key="findLastWusWeight">
+					<value>
+						<![CDATA[
+							SELECT * FROM wus_weight ORDER BY wus_id DESC LIMIT 1;
+						]]>
+					</value>
+				</entry>
+				
+				<!-- find last insert from table tcfWeight  -->
+				<entry key="findLastTcfWeight">
+					<value>
+						<![CDATA[
+							SELECT * FROM tcf_weight ORDER BY tcf_id DESC LIMIT 1;
+						]]>
+					</value>
+				</entry>
+				
+				<!-- find last insert from table efcWeight  -->
+				<entry key="findLastEfcWeight">
+					<value>
+						<![CDATA[
+							SELECT * FROM efc_weight ORDER BY efc_id DESC LIMIT 1;
+						]]>
+					</value>
+				</entry>
+				
+				<!-- find last insert from table usecasePoint  -->
+				<entry key="findLastUsecasePoint">
+					<value>
+						<![CDATA[
+							SELECT * FROM usecase_point ORDER BY ucp_id DESC LIMIT 1;
+						]]>
+					</value>
+				</entry>
 			</map>
 		</constructor-arg>
 	</bean>

@@ -18,4 +18,15 @@ public class AbstractBaseController  {
 	@Autowired protected IUseCasePointRestWS useCasePointRestWS;
 	@Autowired protected IUsecasePointService usecasePointService;
 	//@Autowired protected ITcfWeightDao
+	
+	protected int getIntValue(Object value) {
+		int result = 0;
+		if(value == null || "".equals(value))
+			return result;
+		if(value instanceof String)
+			result =  Integer.parseInt(value.toString());
+		if(value instanceof Integer)
+			result = (Integer)value;
+		return result;
+	}
 }

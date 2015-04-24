@@ -3,7 +3,7 @@ var app = angular.module('estimatingApp', ['ui.router', 'ngMaterial', 'ngSanitiz
 
 app.config(function($stateProvider, $urlRouterProvider) {
     
-    $urlRouterProvider.otherwise('/usecase-cal');
+    $urlRouterProvider.otherwise('home');
     
     $stateProvider
         
@@ -13,7 +13,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
             views: {
             	'selectProject':{
             		 templateUrl: 'views/component/selectPrpject_view.html',
-                     controller: 'projectCtrl'
+                     controller: 'projectCtrl',
+                     controller: 'usecaseCtrl'
             	},
             	'calculate' :{
             		templateUrl: 'views/usecase_cal.html',

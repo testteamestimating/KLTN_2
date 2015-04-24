@@ -26,4 +26,9 @@
 	<bean id="userDaoImpl" class="com.estimating.dao.impl.UserDaoImpl" parent="baseDao"/>
 	<bean id="projectDaoImpl" class="com.estimating.dao.impl.ProjectDaoImpl" parent="baseDao"/>
 	<bean id="projectTypeDaoImpl" class="com.estimating.dao.impl.ProjectTypeDaoImpl" parent="baseDao"/>
+	<bean id="wasWeightDaoImpl" class="com.estimating.dao.impl.WasWeightDaoImpl" parent="baseDao"/>
+	<bean id="wusWeightDaoImpl" class="com.estimating.dao.impl.WusWeightDaoImpl" parent="baseDao"/>
+	<bean id="tcfWeightDaoImpl" class="com.estimating.dao.impl.TcfWeightDaoImpl" parent="baseDao"/>
+	<bean id="efcWeightDaoImpl" class="com.estimating.dao.impl.EfcWeightDaoImpl" parent="baseDao"/>
+	<bean id="useCasePointDaoImpl" class="com.estimating.dao.impl.UseCasePointDaoImpl" parent="baseDao"/>
 </beans>

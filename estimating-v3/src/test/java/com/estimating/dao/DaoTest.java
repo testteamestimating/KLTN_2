@@ -36,7 +36,9 @@ import com.estimating.dao.core.IWusWeightDao;
 import com.estimating.dao.core.PersistenceContext;
 import com.estimating.entity.DateEmbedded;
 import com.estimating.entity.Project;
+import com.estimating.entity.UsecasePointProperties;
 import com.estimating.entity.Users;
+import com.estimating.enums.SelectBuilder;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { PersistenceContext.class , TestConfig.class})
@@ -61,10 +63,12 @@ public class DaoTest {
 	@Autowired IUserTypeDao userTypeDao;
 	@Autowired IVafWeightDao vafWeightDao;
 	@Autowired IUsersDao userDao;
+	@Autowired IUsecasePointPropertiesDao usecasePointProperties;
+	@Autowired IUseCasePointDao useCasePointDao;
 	
 	@SuppressWarnings("unused")
 	private ApplicationContext context;
-	
+	SelectBuilder selectBuilder = new SelectBuilder();
 	private DateEmbedded date;
 	
 	@Before
@@ -174,6 +178,28 @@ public class DaoTest {
 		projects = projectDao.findListProjectOfUserVipByUsername("vuhung");
 		for (Project project : projects) {
 			System.out.println(project.getProjectName());
+		}
+	}
+	
+	@Test
+	public void findLastIdWasWeight() {
+		int id = wasWeightDao.findLastIdWasWeight();
+		Assert.assertNotNull(id);
+		System.out.println(id);
+	}
+	
+	@Test
+	public void createUsecasePointProperties() {
+		List<String> usimples = new ArrayList<String>();
+		usimples.add("Long");
+		usimples.add("hung");
+		usimples.add("vu");
+		for (String usimple : usimples) {
+			UsecasePointProperties usecasePointProperties = new UsecasePointProperties(); 
+			usecasePointProperties.setCommonType(commonTypeDao.findOneById(1));
+			usecasePointProperties.setUcppName(usimple);
+			usecasePointProperties.setUsecasePoint(useCasePointDao.findOneById(1));
+			usecasePointPropertiesDao.create(usecasePointProperties);
 		}
 	}
 	

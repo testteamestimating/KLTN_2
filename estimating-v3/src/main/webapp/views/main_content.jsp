@@ -457,7 +457,7 @@
 		Demo.init(); // init demo features
 		TableEditable.init();
 		ComponentsDropdowns.init();
-		TableAdvanced.init();
+		//TableAdvanced.init();
 		//UIExtendedModals.init();
 	});
        

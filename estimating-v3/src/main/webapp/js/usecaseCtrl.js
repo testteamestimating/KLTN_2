@@ -69,8 +69,6 @@ app.controller('usecaseCtrl', function($scope, $rootScope, $http) {
 		return object;
 	};
 	
-	
-	
 	$scope.updateProject = function() {
 		alert("abc" + $scope.projects[2].projectTypeId);
 		var url = "project/update";
@@ -242,6 +240,38 @@ app.controller('usecaseCtrl', function($scope, $rootScope, $http) {
 	 * usecase point review
 	 */
 	$scope.review = function() {
+		var data = $scope.getUsecasePointData();
+		var url = "usecasepoint/review"
+		$http.post(url, data).
+		success(function(response) {
+			$scope.totalPoint = response["totalPoint"];
+			$scope.totalHour = response["totalHour"];
+			$scope.totalCost = response["totalCost"];
+		}).
+		error(function() {
+			console.log("Error");
+		});
+	};
+	
+	/*
+	 * Usecasepoint finish
+	 */
+	$scope.finish = function() {
+		var data = $scope.getUsecasePointData();
+		var url = "usecasepoint/finish"
+		$http.post(url, data).
+		success(function(response) {
+			$scope.totalPoint = response.totalPoint;
+			$scope.totalHour = response.totalHour;
+			$scope.totalCost = response.totalCost;
+		}).
+		error(function() {
+			console.log("Error");
+		});
+	};
+	
+	// Get all data to send server
+	$scope.getUsecasePointData = function() {
 		var data = {};
 		
 		// get usecase
@@ -318,16 +348,9 @@ app.controller('usecaseCtrl', function($scope, $rootScope, $http) {
 		
 		data.hourPerTask = $scope.hourPerTask;
 		data.payment = $scope.payment;
+		data.projectId = $scope.projectId;
 		
-		var url = "usecasepoint/review"
-		$http.post(url, data).
-		success(function(response) {
-			$scope.totalPoint = response["totalPoint"];
-			$scope.totalHour = response["totalHour"];
-			$scope.totalCost = response["totalCost"];
-		}).
-		error(function() {
-		});
+		return data;
 	};
 	
 });
