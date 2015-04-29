@@ -1,6 +1,7 @@
 package com.estimating.dao.core;
 
 import java.util.List;
+import java.util.Map;
 
 import com.estimating.entity.Project;
 
@@ -15,4 +16,5 @@ public interface IProjectDao extends IBaseDao<Project> {
 	public List<Project> findListProjectShareUserToUser(String owner_user, String share_user);
 	public List<Project> findListProjectOfUserVipByUsername(String username);
 	public List<Project> findListProjectOfUserRegularByUsername(String username);
+	public List<Project> search(Map<String, Object> request);
 }

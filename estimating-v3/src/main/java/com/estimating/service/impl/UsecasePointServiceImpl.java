@@ -4,9 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javassist.expr.NewArray;
-
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.estimating.bean.EfcWeightBean;
@@ -27,7 +24,6 @@ import com.estimating.service.core.IUsecasePointService;
 @Service
 public class UsecasePointServiceImpl extends AbstractBaseService implements IUsecasePointService {
 
-	private static final Logger logger = Logger.getLogger(UsecasePointServiceImpl.class);
 	
 	@Override
 	public UsecasePointBean create(UsecasePointBean usecasePointBean) {
@@ -176,7 +172,7 @@ public class UsecasePointServiceImpl extends AbstractBaseService implements IUse
 			UsecasePointProperties usecasePointProperties = new UsecasePointProperties();
 			usecasePointProperties.setUcppName(uAveage);
 			usecasePointProperties.setCommonType(commonTypeDao.findOneById(2));
-			usecasePointProperties.setUsecasePoint(useCasePointDao.findOneById(2));
+			usecasePointProperties.setUsecasePoint(useCasePointDao.findOneById(useCasePointDao.findLastIdUsecasePoint()));
 			usecasePointPropertiesDao.create(usecasePointProperties);
 		}
 		List<String> uComplexs = (List<String>) request.get("ucomplex");
@@ -184,7 +180,7 @@ public class UsecasePointServiceImpl extends AbstractBaseService implements IUse
 			UsecasePointProperties usecasePointProperties = new UsecasePointProperties();
 			usecasePointProperties.setUcppName(uComplex);
 			usecasePointProperties.setCommonType(commonTypeDao.findOneById(3));
-			usecasePointProperties.setUsecasePoint(useCasePointDao.findOneById(2));
+			usecasePointProperties.setUsecasePoint(useCasePointDao.findOneById(useCasePointDao.findLastIdUsecasePoint()));
 			usecasePointPropertiesDao.create(usecasePointProperties);
 		}
 		
@@ -193,7 +189,7 @@ public class UsecasePointServiceImpl extends AbstractBaseService implements IUse
 			UsecasePointProperties usecasePointProperties = new UsecasePointProperties();
 			usecasePointProperties.setUcppName(asimple);
 			usecasePointProperties.setCommonType(commonTypeDao.findOneById(4));
-			usecasePointProperties.setUsecasePoint(useCasePointDao.findOneById(2));
+			usecasePointProperties.setUsecasePoint(useCasePointDao.findOneById(useCasePointDao.findLastIdUsecasePoint()));
 			usecasePointPropertiesDao.create(usecasePointProperties);
 		}
 		List<String> aaverages = (List<String>) request.get("aaverage");
@@ -201,7 +197,7 @@ public class UsecasePointServiceImpl extends AbstractBaseService implements IUse
 			UsecasePointProperties usecasePointProperties = new UsecasePointProperties();
 			usecasePointProperties.setUcppName(aaverage);
 			usecasePointProperties.setCommonType(commonTypeDao.findOneById(5));
-			usecasePointProperties.setUsecasePoint(useCasePointDao.findOneById(2));
+			usecasePointProperties.setUsecasePoint(useCasePointDao.findOneById(useCasePointDao.findLastIdUsecasePoint()));
 			usecasePointPropertiesDao.create(usecasePointProperties);
 		}
 		List<String> acomplexs = (List<String>) request.get("acomplex");
@@ -209,7 +205,7 @@ public class UsecasePointServiceImpl extends AbstractBaseService implements IUse
 			UsecasePointProperties usecasePointProperties = new UsecasePointProperties();
 			usecasePointProperties.setUcppName(acomplex);
 			usecasePointProperties.setCommonType(commonTypeDao.findOneById(6));
-			usecasePointProperties.setUsecasePoint(useCasePointDao.findOneById(2));
+			usecasePointProperties.setUsecasePoint(useCasePointDao.findOneById(useCasePointDao.findLastIdUsecasePoint()));
 			usecasePointPropertiesDao.create(usecasePointProperties);
 		}
 		return null;

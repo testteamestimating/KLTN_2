@@ -111,4 +111,6 @@ public abstract class AbstractBaseDao<T> implements IBaseDao<T> {
 			return entityManager.createNativeQuery(stringQuery, entityClass);
 		}
 	}
+	
+
 }

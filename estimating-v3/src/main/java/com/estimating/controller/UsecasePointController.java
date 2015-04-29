@@ -26,4 +26,5 @@ public class UsecasePointController extends AbstractBaseController {
 		return usecasePointService.finish(request);
 	}
 	
+
 }

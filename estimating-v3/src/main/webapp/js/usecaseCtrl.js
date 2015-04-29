@@ -335,7 +335,6 @@ app.controller('usecaseCtrl', function($scope, $rootScope, $http) {
 		data.trainingNeeds = $scope.trainingNeedsId;
 		data.reusableCode = $scope.reusableCodeId;
 
-		
 		//Efc variable
 		data.familiarwithDevelopmentProcess = $scope.familiarwithDevelopmentProcessId;
 		data.applicationExperience = $scope.applicationExperienceId;
@@ -348,7 +347,7 @@ app.controller('usecaseCtrl', function($scope, $rootScope, $http) {
 		
 		data.hourPerTask = $scope.hourPerTask;
 		data.payment = $scope.payment;
-		data.projectId = $scope.projectId;
+		data.projectId = $rootScope.projectId;
 		
 		return data;
 	};

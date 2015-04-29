@@ -1,6 +1,8 @@
 package com.estimating.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -47,5 +49,13 @@ public class ProjectController extends AbstractBaseController {
 		String username = (String)session.getAttribute("username");
 		projectBean.setUsername(username);
 		return projectService.update(projectBean);
+	}
+	
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	@ResponseBody
+	public List<ProjectBean> sreach(@RequestBody Map<String, Object> request) {
+		List<ProjectBean> beans = new ArrayList<ProjectBean>();
+		beans =  projectService.search(request);
+		return beans;
 	}
 }

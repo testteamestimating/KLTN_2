@@ -23,6 +23,7 @@
  	</select>
  </div>
  <button type="button" class="btn blue" ng-click="updateProject()">CHANGE</button>
+ <button type="button" class="btn blue" ng-click="load()">load</button>
  
 <div class="row">
 	<div class="col-md-12 ">
@@ -39,75 +40,53 @@
 			</div>
 			<div class="portlet-body display-hide">
 				<strong><h4 class="text-left">Search with totoal point, cost or some thing...</h4></strong>
-				
-				<div class="row">
-						<div class="col-md-2">
-							<input type="checkbox" class="make-switch" data-on-text="&nbsp;Enabled&nbsp;&nbsp;" data-off-text="&nbsp;Disabled&nbsp;">
-						</div>
-						<div class="col-md-3">
-							<span>UsecasePoint value from:</span>
-						</div>
-						<div class="col-md-2">
-							<input id="mask_number" style="text-align: right;" type="text">
-						</div>
-						<div class="col-md-2">
-							<span>to:</span>
-						</div>
-						<div class="col-md-2">
-							<input id="mask_number" style="text-align: right;" type="text">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-2">
-							<input type="checkbox" class="make-switch" data-on-text="&nbsp;Enabled&nbsp;&nbsp;" data-off-text="&nbsp;Disabled&nbsp;">
-						</div>
-						<div class="col-md-3">
-							<span>Function Point value from:</span>
-						</div>
-						<div class="col-md-2">
-							<input id="mask_number" style="text-align: right;" type="text">
-						</div>
-						<div class="col-md-2">
-							<span>to:</span>
-						</div>
-						<div class="col-md-2">
-							<input id="mask_number" style="text-align: right;" type="text">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-2">
-							<input type="checkbox" class="make-switch" data-on-text="&nbsp;Enabled&nbsp;&nbsp;" data-off-text="&nbsp;Disabled&nbsp;">
-						</div>
-						<div class="col-md-3">
-							<span>Total Cost value from:</span>
-						</div>
-						<div class="col-md-2">
-							<input id="mask_number" style="text-align: right;" type="text">
-						</div>
-						<div class="col-md-2">
-							<span>to:</span>
-						</div>
-						<div class="col-md-2">
-							<input id="mask_number" style="text-align: right;" type="text">
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-2">
-							<input type="checkbox" class="make-switch" data-on-text="&nbsp;Enabled&nbsp;&nbsp;" data-off-text="&nbsp;Disabled&nbsp;">
-						</div>
-						<div class="col-md-3">
-							<span>Total Hour value from:</span>
-						</div>
-						<div class="col-md-2">
-							<input id="mask_number" style="text-align: right;" type="text">
-						</div>
-						<div class="col-md-2">
-							<span>to:</span>
-						</div>
-						<div class="col-md-2">
-							<input id="mask_number" style="text-align: right;" type="text">
-						</div>
-					</div>
+				<table>
+					<tr>
+						<td class="col-md-2">
+							<md-checkbox ng-model="data.usecasePoint" aria-label="Checkbox 2" ng-true-value="'yes'" ng-false-value="'no'" class="md-warn">
+					      Use this criteria: {{ data.usecasePoint }}
+					    </md-checkbox>
+						</td>
+						<td class="col-md-5">
+							<span>UsecasePoint minimum value:</span>
+							<input id="mask_number" ng-model = "usecaseMin" style="text-align: right;" type="text">
+						</td>
+						<td class="col-md-5:">
+							<span>UsecasePoint max value:</span>
+							<input id="mask_number" ng-model = "usecaseMax" style="text-align: right;" type="text">
+						</td>
+					</tr>
+					<tr>
+						<td class="col-md-2">
+							<md-checkbox ng-model="data.functionPoint" aria-label="Checkbox 2" ng-true-value="'yes'" ng-false-value="'no'" class="md-warn">
+					      Use this criteria: {{ data.functionPoint }}
+					    </md-checkbox>
+						</td>
+						<td class="col-md-5">
+							<span>FunctionPoint minimum value:</span>
+							<input id="mask_number" ng-model = "functionMin" style="text-align: right;" type="text">
+						</td>
+						<td class="col-md-5:">
+							<span>FunctionPoint max value:</span>
+							<input id="mask_number" ng-model = "functionMax" style="text-align: right;" type="text">
+						</td>
+					</tr>
+					<tr>
+						<td class="col-md-2">
+							<md-checkbox ng-model="data.cost" aria-label="Checkbox 2" ng-true-value="'yes'" ng-false-value="'no'" class="md-warn">
+					      Use this criteria: {{ data.cost }}
+					    </md-checkbox>
+						</td>
+						<td class="col-md-5">
+							<span>Minimun total project cost:</span>
+							<input id="mask_number" ng-model = "costMin" style="text-align: right;" type="text">
+						</td>
+						<td class="col-md-5:">
+							<span>Maximun total project cost:</span>
+							<input id="mask_number" ng-model = "costMax" style="text-align: right;" type="text">
+						</td>
+					</tr>
+				</table>
 					<div class="row">
 						<div class="col-md-offset-9 col-md-3">
 								<p>&nbsp</p>
@@ -115,7 +94,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-offset-9 col-md-3">
-								<button type="submit" class="btn green"><i class="fa fa-check"></i> Search</button>
+								<button type="submit" class="btn green" ng-click="show()" ><i class="fa fa-check"></i> Search</button>
 							</div>
 					</div>
 			</div>
@@ -145,19 +124,19 @@
 			</th>
 			<th class="hidden-xs">
 				 Engine version
-			</th>
+			</th>y
 			<th class="hidden-xs">
 				 CSS grade
 			</th>
 		</tr>
 		</thead>
 		<tbody>
-		<tr>
+		<tr  ng-repeat="item in projects" ng-class="rowClass(item)" >
 			<td>
-				 Trident
+				 {{item.projectName}}
 			</td>
 			<td>
-				 Internet Explorer 4.0
+				 {{item.description}}
 			</td>
 			<td>
 				 Win 95+
@@ -167,40 +146,6 @@
 			</td>
 			<td>
 				 X
-			</td>
-		</tr>
-		<tr>
-			<td>
-				 Trident
-			</td>
-			<td>
-				 Internet Explorer 5.0
-			</td>
-			<td>
-				 Win 95+
-			</td>
-			<td>
-				 5
-			</td>
-			<td>
-				 C
-			</td>
-		</tr>
-		<tr>
-			<td>
-				 Presto
-			</td>
-			<td>
-				 Nintendo DS browser
-			</td>
-			<td>
-				 Nintendo DS
-			</td>
-			<td>
-				 8.5
-			</td>
-			<td>
-				 C/A<sup>1</sup>
 			</td>
 		</tr>
 		</tbody>

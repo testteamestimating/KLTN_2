@@ -2,6 +2,9 @@ package com.estimating.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import javax.persistence.Query;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -58,6 +61,19 @@ public class ProjectServiceImpl extends AbstractBaseService implements IProjectS
 		project.setUser(user);
 		projectDao.update(project);
 		return projectBean;
+	}
+
+	@Override
+	public List<ProjectBean> search(Map<String, Object> request) {
+		List<Project> projects = projectDao.search(request);
+		List<ProjectBean> results = new ArrayList<ProjectBean>(projects.size());
+		for (Project project : projects) {
+			ProjectBean bean = new ProjectBean(); 
+			BeanUtils.copyProperties(project, bean);
+			results.add(bean);
+		}
+		int a = projects.get(1).getId();
+		return results;
 	}
 
 }

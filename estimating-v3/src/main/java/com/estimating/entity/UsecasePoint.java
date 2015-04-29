@@ -46,8 +46,8 @@ public class UsecasePoint  extends BaseEntity {
 	@OneToMany(mappedBy = "usecasePoint")
 	private List<UsecasePointProperties> usecaseProperties;
 	
-	@Column(name = "version", nullable = false)
-	private int version;
+	@Column(name = "usecaseVersion", nullable = false)
+	private int usecaseVersion;
 	
 	@Embedded
 	private DateEmbedded date;
@@ -61,20 +61,20 @@ public class UsecasePoint  extends BaseEntity {
 	@Column(name = "tcfPoint", nullable = false, columnDefinition = "double default 0.0")
 	private double tcfPoint;
 	
-	@Column(name = "efcPOint", nullable = false, columnDefinition = "double default 0.0")
+	@Column(name = "efcPoint", nullable = false, columnDefinition = "double default 0.0")
 	private double efcPoint;
 	
-	@Column(name = "totalPoint", nullable = false, columnDefinition = "double default 0.0")
-	private double totalPoint;
+	@Column(name = "usecaseTotalPoint", nullable = false, columnDefinition = "double default 0.0")
+	private double usecaseTotalPoint;
 	
-	@Column(name = "totalCost", nullable = false, columnDefinition = "double default 0.0")
-	private double totalCost;
+	@Column(name = "usecaseTotalCost", nullable = false, columnDefinition = "double default 0.0")
+	private double usecaseTotalCost;
 	
-	@Column(name = "totalHour", nullable = false, columnDefinition = "double default 0.0")
-	private double totalHour;
+	@Column(name = "usecaseTotalHour", nullable = false, columnDefinition = "double default 0.0")
+	private double usecaseTotalHour;
 	
-	@Column(name = "payment", nullable = false, columnDefinition = "double default 0.0")
-	private int payment;
+	@Column(name = "usecasePayment", nullable = false, columnDefinition = "double default 0.0")
+	private int usecasePayment;
 
 	/**
 	 * @param project
@@ -106,16 +106,16 @@ public class UsecasePoint  extends BaseEntity {
 		this.waWeight = waWeight;
 		this.tcfWeight = tcfWeight;
 		this.efcWeight = efcWeight;
-		this.version = version;
+		this.usecaseVersion = version;
 		this.date = date;
 		this.wasPoint = wasPoint;
 		this.wusPoint = wusPoint;
 		this.tcfPoint = tcfPoint;
 		this.efcPoint = efcPoint;
-		this.totalPoint = totalPoint;
-		this.totalCost = totalCost;
-		this.totalHour = totalHour;
-		this.payment = payment;
+		this.usecaseTotalPoint = totalPoint;
+		this.usecaseTotalCost = totalCost;
+		this.usecaseTotalHour = totalHour;
+		this.usecasePayment = payment;
 	}
 
 	/**
@@ -134,16 +134,16 @@ public class UsecasePoint  extends BaseEntity {
 			double wusPoint, double tcfPoint, double efcPoint,
 			double totalPoint, double totalCost, double totalHour, int payment) {
 		super();
-		this.version = version;
+		this.usecaseVersion = version;
 		this.date = date;
 		this.wasPoint = wasPoint;
 		this.wusPoint = wusPoint;
 		this.tcfPoint = tcfPoint;
 		this.efcPoint = efcPoint;
-		this.totalPoint = totalPoint;
-		this.totalCost = totalCost;
-		this.totalHour = totalHour;
-		this.payment = payment;
+		this.usecaseTotalPoint = totalPoint;
+		this.usecaseTotalCost = totalCost;
+		this.usecaseTotalHour = totalHour;
+		this.usecasePayment = payment;
 	}
 
 	/**
@@ -241,14 +241,14 @@ public class UsecasePoint  extends BaseEntity {
 	 * @return the version
 	 */
 	public int getVersion() {
-		return version;
+		return usecaseVersion;
 	}
 
 	/**
 	 * @param version the version to set
 	 */
 	public void setVersion(int version) {
-		this.version = version;
+		this.usecaseVersion = version;
 	}
 
 	/**
@@ -325,56 +325,56 @@ public class UsecasePoint  extends BaseEntity {
 	 * @return the totalPoint
 	 */
 	public double getTotalPoint() {
-		return totalPoint;
+		return usecaseTotalPoint;
 	}
 
 	/**
 	 * @param totalPoint the totalPoint to set
 	 */
 	public void setTotalPoint(double totalPoint) {
-		this.totalPoint = totalPoint;
+		this.usecaseTotalPoint = totalPoint;
 	}
 
 	/**
 	 * @return the totalCost
 	 */
 	public double getTotalCost() {
-		return totalCost;
+		return usecaseTotalCost;
 	}
 
 	/**
 	 * @param totalCost the totalCost to set
 	 */
 	public void setTotalCost(double totalCost) {
-		this.totalCost = totalCost;
+		this.usecaseTotalCost = totalCost;
 	}
 
 	/**
 	 * @return the totalHour
 	 */
 	public double getTotalHour() {
-		return totalHour;
+		return usecaseTotalHour;
 	}
 
 	/**
 	 * @param totalHour the totalHour to set
 	 */
 	public void setTotalHour(double totalHour) {
-		this.totalHour = totalHour;
+		this.usecaseTotalHour = totalHour;
 	}
 
 	/**
 	 * @return the payment
 	 */
 	public int getPayment() {
-		return payment;
+		return usecasePayment;
 	}
 
 	/**
 	 * @param payment the payment to set
 	 */
 	public void setPayment(int payment) {
-		this.payment = payment;
+		this.usecasePayment = payment;
 	}
 
 	/**

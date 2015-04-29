@@ -53,8 +53,8 @@ public class FunctionPoint extends BaseEntity {
 	@OneToMany(mappedBy = "functionPoint")
 	private List<FunctionPointProperties> funtionPointProperties;
 	
-	@Column(name = "version", nullable = false, columnDefinition = "int default 0")
-	private int version;
+	@Column(name = "functionVersion", nullable = false, columnDefinition = "int default 0")
+	private int functionVersion;
 	
 	@Embedded
 	private DateEmbedded date;
@@ -77,17 +77,17 @@ public class FunctionPoint extends BaseEntity {
 	@Column(name = "vafPoint", nullable = false, columnDefinition = "double default 0.0")
 	private double vafPoint;
 	
-	@Column(name = "totalPoint", nullable = false, columnDefinition = "double default 0.0")
-	private double totalPoint;
+	@Column(name = "functionTotalPoint", nullable = false, columnDefinition = "double default 0.0")
+	private double functionTotalPoint;
 	
-	@Column(name = "totalCost", nullable = false, columnDefinition = "double default 0.0")
-	private double totalCost;
+	@Column(name = "functionTotalCost", nullable = false, columnDefinition = "double default 0.0")
+	private double functionTotalCost;
 	
-	@Column(name = "totalHour", nullable = false, columnDefinition = "double default 0.0")
-	private double totalHour;
+	@Column(name = "functionTotalHour", nullable = false, columnDefinition = "double default 0.0")
+	private double functionTotalHour;
 	
-	@Column(name = "payment", nullable = false, columnDefinition = "double default 0.0")
-	private int payment;
+	@Column(name = "functionPayment", nullable = false, columnDefinition = "double default 0.0")
+	private int functionPayment;
 
 	/**
 	 * @return the project
@@ -157,7 +157,7 @@ public class FunctionPoint extends BaseEntity {
 		this.eqWeight = eqWeight;
 		this.eifWeight = eifWeight;
 		this.vafWeight = vafWeight;
-		this.version = version;
+		this.functionVersion = version;
 		this.date = date;
 		this.eiPoint = eiPoint;
 		this.lifPoint = lifPoint;
@@ -165,10 +165,10 @@ public class FunctionPoint extends BaseEntity {
 		this.upPoint = upPoint;
 		this.eifPoint = eifPoint;
 		this.vafPoint = vafPoint;
-		this.totalPoint = totalPoint;
-		this.totalCost = totalCost;
-		this.totalHour = totalHour;
-		this.payment = payment;
+		this.functionTotalPoint = totalPoint;
+		this.functionTotalCost = totalCost;
+		this.functionTotalHour = totalHour;
+		this.functionPayment = payment;
 	}
 
 	/**
@@ -262,14 +262,14 @@ public class FunctionPoint extends BaseEntity {
 	 * @return the version
 	 */
 	public int getVersion() {
-		return version;
+		return functionVersion;
 	}
 
 	/**
 	 * @param version the version to set
 	 */
 	public void setVersion(int version) {
-		this.version = version;
+		this.functionVersion = version;
 	}
 
 	/**
@@ -374,56 +374,56 @@ public class FunctionPoint extends BaseEntity {
 	 * @return the totalPoint
 	 */
 	public double getTotalPoint() {
-		return totalPoint;
+		return functionTotalPoint;
 	}
 
 	/**
 	 * @param totalPoint the totalPoint to set
 	 */
 	public void setTotalPoint(double totalPoint) {
-		this.totalPoint = totalPoint;
+		this.functionTotalPoint = totalPoint;
 	}
 
 	/**
 	 * @return the totalCost
 	 */
 	public double getTotalCost() {
-		return totalCost;
+		return functionTotalCost;
 	}
 
 	/**
 	 * @param totalCost the totalCost to set
 	 */
 	public void setTotalCost(double totalCost) {
-		this.totalCost = totalCost;
+		this.functionTotalCost = totalCost;
 	}
 
 	/**
 	 * @return the totalHour
 	 */
 	public double getTotalHour() {
-		return totalHour;
+		return functionTotalHour;
 	}
 
 	/**
 	 * @param totalHour the totalHour to set
 	 */
 	public void setTotalHour(double totalHour) {
-		this.totalHour = totalHour;
+		this.functionTotalHour = totalHour;
 	}
 
 	/**
 	 * @return the payment
 	 */
 	public int getPayment() {
-		return payment;
+		return functionPayment;
 	}
 
 	/**
 	 * @param payment the payment to set
 	 */
 	public void setPayment(int payment) {
-		this.payment = payment;
+		this.functionPayment = payment;
 	}
 
 	/**

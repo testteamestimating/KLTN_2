@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,7 +40,7 @@ import com.estimating.entity.DateEmbedded;
 import com.estimating.entity.Project;
 import com.estimating.entity.UsecasePointProperties;
 import com.estimating.entity.Users;
-import com.estimating.enums.SelectBuilder;
+import com.estimating.utils.SelectBuilder;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { PersistenceContext.class , TestConfig.class})
@@ -203,4 +205,22 @@ public class DaoTest {
 		}
 	}
 	
+	@Test
+	public void test() {
+		selectBuilder.from("project");
+		/*selectBuilder.join("usecase_point");
+		selectBuilder.on("project.p_id", "usecase_point.project");
+		selectBuilder.join("function_point");
+		selectBuilder.on("project.p_id", "usecase_point.project");
+		selectBuilder.where("total_point > 20");*/
+		selectBuilder.column("project_name");
+		selectBuilder.column("total_point");
+		selectBuilder.inner("usecase_point", "project.p_id", "usecase_point.project");
+		selectBuilder.inner("function_point", "project.p_id", "function_point.project");
+		selectBuilder.where("total_point > 20");
+		String temp = selectBuilder.toString();
+		System.out.println(temp);
+		//projectDao.search();
+		
+	}
 }

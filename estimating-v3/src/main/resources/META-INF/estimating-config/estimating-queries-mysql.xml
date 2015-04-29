@@ -167,6 +167,29 @@
 						]]>
 					</value>
 				</entry>
+				
+				<!-- khoi tao  -->
+				<entry key="from">
+					<value>
+						<![CDATA[
+							select * from project ;
+						]]>
+					</value>
+				</entry>
+				<entry key="where">
+					<value>
+						<![CDATA[
+							where :dk;
+						]]>
+					</value>
+				</entry>
+				<entry key="join">
+					<value>
+						<![CDATA[
+							join :table
+						]]>
+					</value>
+				</entry>
 			</map>
 		</constructor-arg>
 	</bean>

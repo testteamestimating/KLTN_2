@@ -1,10 +1,19 @@
 app.controller('projectCtrl', function($scope, $mdDialog, $rootScope, $http, $stateParams, $state) {
 	
+	$scope.data = {};
+	$scope.data.usecasePoint = "no";
+	$scope.data.functionPoint = "no";
+	$scope.data.cost = "no";
+	$scope.data.cb4 = false;
+	$scope.data.cb5 = false;
+		
 	$scope.projects;
 	$scope.projectTypes;
 	$scope.project;
 	$scope.projectType;
 	$scope.state = $state.current;
+	$rootScope.projectId = $scope.projectId ;
+	
 	if($scope.state.name == "usecase_cal" && $scope.projects == null && $scope.projectTypes == null) {
 		$http.get("project/findall")
 		.success(function(response) {
@@ -15,9 +24,21 @@ app.controller('projectCtrl', function($scope, $mdDialog, $rootScope, $http, $st
 	    });
 	};
 	
+	$scope.load = function() {
+		$http.get("project/findall")
+		.success(function(response) {
+			$scope.projects = response["projects"];
+			$scope.projectTypes = response["projectTypes"];
+		}).error(function(){
+			throw new Error("Can't find the object");
+	    });
+	}
+	
 	$scope.addNewProject = function() {
+		alert($scope.projectId);
 		var url = "project/add";
 		var requestObject = $scope.initProjectObject();
+		$rootScope.projectId = $scope.projectId ;
 		$http.post(url, requestObject).
 		success(function(response) {
 			alert("OK");
@@ -26,12 +47,43 @@ app.controller('projectCtrl', function($scope, $mdDialog, $rootScope, $http, $st
 		});
 	};
 	
+	$scope.show = function() {
+		var url = "project/search";
+		var data = $scope.getvalues();
+		$http.post(url, data).
+		success(function(response) {
+			$scope.projects = response;
+			alert("OK");
+		}).
+		error(function() {
+		});
+	}
+	
+	$scope.getvalues = function() {
+		var datavalue = {};
+		
+		datavalue.usecaseMin = $scope.usecaseMin;
+		datavalue.usecaseMax = $scope.usecaseMax;
+		datavalue.functionMin = $scope.functionMin;
+		datavalue.functionMax = $scope.functionMax;
+		datavalue.costMin = $scope.costMin;
+		datavalue.costMax = $scope.costMax;
+		datavalue.usecasePointCheck = $scope.data.usecasePoint;
+		datavalue.functionPointCheck = $scope.data.functionPoint;
+		datavalue.costCheck = $scope.data.cost;
+		return datavalue;
+	}
+	
+	
+	
 	$scope.initProjectObject = function() {
 		var object = {
 			"projectName" : $scope.projectName,
 			"description" : $scope.description,
-			"projectTypeId": $scope.projectTypeId
+			"projectTypeId": $scope.projectTypeId,
+			
 		};
+		$rootScope.projectId = $scope.projectId;
 		return object;
 	};
 	

@@ -17,6 +17,7 @@ import com.estimating.dao.core.IWasWeightDao;
 import com.estimating.dao.core.IWusWeightDao;
 import com.estimating.entity.DateEmbedded;
 import com.estimating.utils.EstimatingConstants;
+import com.estimating.utils.SelectBuilder;
 import com.estimating.ws.rest.IUseCasePointRestWS;
 
 public abstract class AbstractBaseService {
@@ -32,6 +33,7 @@ public abstract class AbstractBaseService {
 	@Autowired protected IEfcWeightDao efcWeightDao;
 	@Autowired protected ICommonTypeDao commonTypeDao;
 	@Autowired protected IUsecasePointPropertiesDao usecasePointPropertiesDao;
+	
 	
 	private EstimatingConstants estimatingConstants;
 
