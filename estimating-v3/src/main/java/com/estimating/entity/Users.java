@@ -24,6 +24,21 @@ public class Users  implements Serializable {
 	@Column(name="password", length=128, nullable = false)
 	private String password;
 	
+	@Column(name = "address", length = 50, nullable = true)
+	private String address;
+
+	@Column(name = "country", length = 20, nullable = true)
+	private String country;
+
+	@Column(name = "city", length = 20, nullable = true)
+	private String city;
+
+	@Column(name = "phone", length = 15, nullable = true)
+	private String phone;
+
+	@Column(name = "fullname", length = 30, nullable = true)
+	private String fullname;
+	
 	@Embedded
 	private DateEmbedded date;
 
@@ -48,15 +63,111 @@ public class Users  implements Serializable {
 	 * @param project
 	 */
 	public Users(String username, String password, DateEmbedded date,
-			UserType userType) {
+			String address, String city, String phone, String country,
+			String fullname, UserType userType) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.date = date;
+		this.address = address;
+		this.city = city;
+		this.phone = phone;
+		this.country = country;
+		this.fullname = fullname;
 		this.userType = userType;
 	}
 
 	
+
+
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+
+
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+
+
+
+
+	public String getCountry() {
+		return country;
+	}
+
+
+
+
+
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+
+
+
+
+
+	public String getCity() {
+		return city;
+	}
+
+
+
+
+
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+
+
+
+
+
+	public String getPhone() {
+		return phone;
+	}
+
+
+
+
+
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+
+
+
+
+
+	public String getFullname() {
+		return fullname;
+	}
+
+
+
+
+
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+
+
 
 
 

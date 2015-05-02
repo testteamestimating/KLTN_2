@@ -5,6 +5,41 @@ public class UserBean {
 	
 	private String username;
 	private String password;
+	private String address;
+	private String fullname;
+	private String country;
+	private String city;
+	private String phone;
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getFullname() {
+		return fullname;
+	}
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	/**
 	 * @return the username
 	 */
