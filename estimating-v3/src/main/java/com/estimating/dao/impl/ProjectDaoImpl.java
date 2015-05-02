@@ -115,48 +115,149 @@ public class ProjectDaoImpl extends AbstractBaseDao<Project> implements IProject
 
 	@SuppressWarnings({ "unchecked", "unused" })
 	@Override
-	public List<Project> search(Map<String, Object> request) {
+	public List<ProjectResultBean> search(Map<String, Object> request) {
 		
 		int usecaseMin = getIntValue(request.get("usecaseMin"));
 		int usecaseMax = getIntValue(request.get("usecaseMax"));
 		int functionMin = getIntValue(request.get("functionMin"));
 		int functionMax = getIntValue(request.get("functionMax"));
-		int costMin = getIntValue(request.get("costMin"));
-		int costMax = getIntValue(request.get("costMax"));
+		int usecaseCostMin = getIntValue(request.get("usecaseCostMin"));
+		int usecaseCostMax = getIntValue(request.get("usecaseCostMax"));
+		int functionCostMin = getIntValue(request.get("functionCostMin"));
+		int functionCostMax = getIntValue(request.get("functionCostMax"));
 		String usecasePointCheck = (String) request.get("usecasePointCheck");
 		String functionPointCheck = (String) request.get("functionPointCheck");
-		String costCheck = (String) request.get("costCheck");
+		String usecaseCostCheck = (String) request.get("usecaseCostCheck");
+		String functionCostCheck = (String) request.get("functionCostCheck");
 		
 		SelectBuilder selectBuilder = new SelectBuilder();
 		selectBuilder.from("project");
-		
-		if("yes".equals(costCheck)) {
+		selectBuilder.column("project.p_id");
+		selectBuilder.column("project.description");
+		selectBuilder.column("project.project_name");
+		if("yes".equals(usecaseCostCheck)) {
+			selectBuilder.column("usecase_point.usecase_total_cost");
+			selectBuilder.column("usecase_point.usecase_version");
+			selectBuilder.column("usecase_point.usecase_total_point");
 			selectBuilder.inner("usecase_point", "project.p_id", "usecase_point.project");
-			selectBuilder.where("usecase_point.usecase_total_point > " + costMin);
-			selectBuilder.where("usecase_point.usecase_total_point < " + costMax);
+			selectBuilder.where("usecase_point.usecase_total_cost > " + usecaseCostMin);
+			selectBuilder.where("usecase_point.usecase_total_cost < " + usecaseCostMax);
 		}
 		if("yes".equals(usecasePointCheck)) {
-			if("no".equals(costCheck)) {
+			if("no".equals(usecaseCostCheck)) {
 				selectBuilder.inner("usecase_point", "project.p_id", "usecase_point.project");
+				selectBuilder.column("usecase_point.usecase_version");
 			}
+			selectBuilder.column("usecase_point.usecase_total_point");
+			selectBuilder.column("usecase_point.usecase_total_cost");
 			selectBuilder.where("usecase_point.usecase_total_point > " + usecaseMin);
 			selectBuilder.where("usecase_point.usecase_total_point < " + usecaseMax);
 		}
-		if("yes".equals(functionPointCheck)) {
+		if("yes".equals(functionCostCheck)) {
 			selectBuilder.inner("function_point", "project.p_id", "function_point.project");
-			selectBuilder.where("function_point.function_total_point > " + functionMin);
-			selectBuilder.where("function_point.function_total_point < " + functionMax);
+			selectBuilder.column("function_point.function_total_cost");
+			selectBuilder.column("function_point.function_total_point");
+			selectBuilder.column("function_point.function_version");
+			selectBuilder.where("function_point.function_total_cost > " + functionCostMin);
+			selectBuilder.where("function_point.function_total_cost < " + functionCostMax);
 		}
-	
-		String temp = selectBuilder.toString();
-		System.out.println(temp);
-		Query query = getTypeQuery(temp);
-		String sql = " select * from project  inner join usecase_point on project.p_id = usecase_point.project where p_id = 1 and  usecase_version = 1;";
-		Query query2 = getTypeQuery(sql);
-		int i = (int) query2.getSingleResult();
-		List<Project> projects = new ArrayList<Project>();
-		projects =  (List<Project>) query.getResultList();
-		return projects;
+		if("yes".equals(functionPointCheck)) {
+			if("no".equals(functionCostCheck)) {
+				selectBuilder.inner("function_point", "project.p_id", "function_point.project");
+				selectBuilder.column("function_point.function_version");
+			}
+			selectBuilder.column("function_point.function_total_point");
+			selectBuilder.column("function_point.function_total_cost");
+			selectBuilder.where("function_point.function_total_point  > " + functionMin);
+			selectBuilder.where("function_point.function_total_point  < " + functionMax);
+		}
+		
+		
+		String sql = selectBuilder.toString();
+		System.out.println(sql);
+		Query query = getQueryForObject(sql);
+		
+		List<Object[]> resultList = query.getResultList();
+		List<ProjectResultBean> results = new ArrayList<ProjectResultBean>(resultList.size());
+		List<Map<String, String>> maps = convertObjectsToMap(resultList, selectBuilder.getColumns());
+		
+		// khi khong co join voi function_Point
+		if("no".equals(functionPointCheck) && "no".equals(functionCostCheck)) {
+			for (Map<String, String> map : maps) {
+				ProjectResultBean bean = new ProjectResultBean();
+				bean.setProjectId(Integer.parseInt(map.get("project.p_id")));
+				bean.setProjectName(map.get("project.project_name"));
+				bean.setDescription(map.get("project.description"));
+				
+				double temp = Math.round(Double.valueOf(map.get("usecase_point.usecase_total_point"))*100.0)/100.0;
+				bean.setUsecaseTotalPoint(String.valueOf(temp));
+				
+				int  usecaseVersion = Integer.parseInt(map.get("usecase_point.usecase_version"));
+				bean.setUsecaseVersion(String.valueOf(usecaseVersion));
+				
+				double usecaseCost = Math.round(Double.valueOf(map.get("usecase_point.usecase_total_cost"))*100.0)/100.0;
+				bean.setUsecaseTotalCost(String.valueOf(usecaseCost));
+				
+				bean.setFunctionTotalPoint("N/A");	
+				bean.setFunctionVersion("N/A");
+				bean.setFunctionTotalCost("N/A");
+				results.add(bean);
+			}
+		}
+		
+		// khi khong join voi usecase_point
+		else if("no".equals(usecasePointCheck) && "no".equals(usecaseCostCheck)) {
+			for (Map<String, String> map : maps) {
+				ProjectResultBean bean = new ProjectResultBean();
+				bean.setProjectId(Integer.parseInt(map.get("project.p_id")));
+				bean.setProjectName(map.get("project.project_name"));
+				bean.setDescription(map.get("project.description"));
+				
+				double temp = Math.round(Double.valueOf(map.get("function_point.function_total_point"))*100.0)/100.0;
+				bean.setFunctionTotalPoint(String.valueOf(temp));
+				
+				int  functionVersion = Integer.parseInt(map.get("function_point.function_version"));
+				bean.setFunctionVersion(String.valueOf(functionVersion));
+				
+				double functionCost = Math.round(Double.valueOf(map.get("function_point.function_total_cost"))*100.0)/100.0;
+				bean.setFunctionTotalCost(String.valueOf(functionCost));
+				
+				bean.setUsecaseTotalCost("N/A");	
+				bean.setUsecaseTotalPoint("N/A");
+				bean.setUsecaseVersion("N/A");
+				results.add(bean);
+			}
+		}
+		
+		else {
+			for (Map<String, String> map : maps) {
+				ProjectResultBean bean = new ProjectResultBean();
+				bean.setProjectId(Integer.parseInt(map.get("project.p_id")));
+				bean.setProjectName(map.get("project.project_name"));
+				bean.setDescription(map.get("project.description"));
+				
+				double temp = Math.round(Double.valueOf(map.get("function_point.function_total_point"))*100.0)/100.0;
+				bean.setFunctionTotalPoint(String.valueOf(temp));
+				
+				int  functionVersion = Integer.parseInt(map.get("function_point.function_version"));
+				bean.setFunctionVersion(String.valueOf(functionVersion));
+				
+				double functionCost = Math.round(Double.valueOf(map.get("function_point.function_total_cost"))*100.0)/100.0;
+				bean.setFunctionTotalCost(String.valueOf(functionCost));
+				
+				double temp2 = Math.round(Double.valueOf(map.get("usecase_point.usecase_total_point"))*100.0)/100.0;
+				bean.setUsecaseTotalPoint(String.valueOf(temp));
+				
+				int  usecaseVersion = Integer.parseInt(map.get("usecase_point.usecase_version"));
+				bean.setUsecaseVersion(String.valueOf(usecaseVersion));
+				
+				double usecaseCost = Math.round(Double.valueOf(map.get("usecase_point.usecase_total_cost"))*100.0)/100.0;
+				bean.setUsecaseTotalCost(String.valueOf(usecaseCost));
+				results.add(bean);
+			}
+		}
+		
+		return results;
 	}
 	
 	protected int getIntValue(Object value) {

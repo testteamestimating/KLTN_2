@@ -3,8 +3,8 @@ app.controller('projectCtrl', function($scope, $mdDialog, $rootScope, $http, $st
 	$scope.data = {};
 	$scope.data.usecasePoint = "no";
 	$scope.data.functionPoint = "no";
-	$scope.data.cost = "no";
-	$scope.data.cb4 = false;
+	$scope.data.usecaseCost = "no";
+	$scope.data.functionCost = "no";
 	$scope.data.cb5 = false;
 		
 	$scope.projects;
@@ -53,24 +53,33 @@ app.controller('projectCtrl', function($scope, $mdDialog, $rootScope, $http, $st
 		$http.post(url, data).
 		success(function(response) {
 			$scope.projects = response;
+			if(pro)
 			alert("OK");
 		}).
 		error(function() {
 		});
 	}
 	
+
 	$scope.getvalues = function() {
 		var datavalue = {};
 		
 		datavalue.usecaseMin = $scope.usecaseMin;
 		datavalue.usecaseMax = $scope.usecaseMax;
+		
 		datavalue.functionMin = $scope.functionMin;
 		datavalue.functionMax = $scope.functionMax;
-		datavalue.costMin = $scope.costMin;
-		datavalue.costMax = $scope.costMax;
+		
+		datavalue.usecaseCostMin = $scope.usecaseCostMin;
+		datavalue.usecaseCostMax = $scope.usecaseCostMax;
+		
+		datavalue.functionCostMin = $scope.functionCostMin;
+		datavalue.functionCostMax = $scope.functionCostMax;
+		
 		datavalue.usecasePointCheck = $scope.data.usecasePoint;
 		datavalue.functionPointCheck = $scope.data.functionPoint;
-		datavalue.costCheck = $scope.data.cost;
+		datavalue.usecaseCostCheck = $scope.data.usecaseCost;
+		datavalue.functionCostCheck = $scope.data.functionCost;
 		return datavalue;
 	}
 	

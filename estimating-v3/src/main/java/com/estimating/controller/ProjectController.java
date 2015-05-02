@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.estimating.bean.ProjectBean;
+import com.estimating.bean.ProjectResultBean;
 
 @Controller
 @RequestMapping("/project")
@@ -53,9 +54,9 @@ public class ProjectController extends AbstractBaseController {
 	
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	@ResponseBody
-	public List<ProjectBean> sreach(@RequestBody Map<String, Object> request) {
-		List<ProjectBean> beans = new ArrayList<ProjectBean>();
+	public List<ProjectResultBean> sreach(@RequestBody Map<String, Object> request) {
+		List<ProjectResultBean> beans = new ArrayList<ProjectResultBean>();
 		beans =  projectService.search(request);
-		return beans;
+ 		return beans;
 	}
 }

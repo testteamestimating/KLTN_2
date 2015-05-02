@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.Query;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.estimating.bean.ProjectBean;
+import com.estimating.bean.ProjectResultBean;
 import com.estimating.entity.Project;
 import com.estimating.entity.ProjectType;
 import com.estimating.entity.Users;
@@ -64,16 +63,10 @@ public class ProjectServiceImpl extends AbstractBaseService implements IProjectS
 	}
 
 	@Override
-	public List<ProjectBean> search(Map<String, Object> request) {
-		List<Project> projects = projectDao.search(request);
-		List<ProjectBean> results = new ArrayList<ProjectBean>(projects.size());
-		for (Project project : projects) {
-			ProjectBean bean = new ProjectBean(); 
-			BeanUtils.copyProperties(project, bean);
-			results.add(bean);
-		}
-		int a = projects.get(1).getId();
+	public List<ProjectResultBean> search(Map<String, Object> request) {
+		List<ProjectResultBean> results = projectDao.search(request);
 		return results;
 	}
+
 
 }

@@ -73,17 +73,32 @@
 					</tr>
 					<tr>
 						<td class="col-md-2">
-							<md-checkbox ng-model="data.cost" aria-label="Checkbox 2" ng-true-value="'yes'" ng-false-value="'no'" class="md-warn">
-					      Use this criteria: {{ data.cost }}
+							<md-checkbox ng-model="data.usecaseCost" aria-label="Checkbox 2" ng-true-value="'yes'" ng-false-value="'no'" class="md-warn">
+					      Use this criteria: {{ data.usecaseCost }}
 					    </md-checkbox>
 						</td>
 						<td class="col-md-5">
-							<span>Minimun total project cost:</span>
-							<input id="mask_number" ng-model = "costMin" style="text-align: right;" type="text">
+							<span>Minimun project cost with usecase:</span>
+							<input id="mask_number" ng-model = "usecaseCostMin" style="text-align: right;" type="text">
 						</td>
 						<td class="col-md-5:">
-							<span>Maximun total project cost:</span>
-							<input id="mask_number" ng-model = "costMax" style="text-align: right;" type="text">
+							<span>Maximun project cost with usecase:</span>
+							<input id="mask_number" ng-model = "usecaseCostMax" style="text-align: right;" type="text">
+						</td>
+					</tr>
+					<tr>
+						<td class="col-md-2">
+							<md-checkbox ng-model="data.functionCost" aria-label="Checkbox 2" ng-true-value="'yes'" ng-false-value="'no'" class="md-warn">
+					      Use this criteria: {{ data.functionCost }}
+					    </md-checkbox>
+						</td>
+						<td class="col-md-5">
+							<span>Minimun project cost with function:</span>
+							<input id="mask_number" ng-model = "functionCostMin" style="text-align: right;" type="text">
+						</td>
+						<td class="col-md-5:">
+							<span>Maximun project cost with function:</span>
+							<input id="mask_number" ng-model = "functionCostMax" style="text-align: right;" type="text">
 						</td>
 					</tr>
 				</table>
@@ -114,19 +129,25 @@
 		<thead>
 		<tr>
 			<th>
-				 Rendering engine
+				 Project Name
 			</th>
 			<th>
-				 Browser
+				 Usecase point
 			</th>
 			<th class="hidden-xs">
-				 Platform(s)
+				 Usecase Cost
 			</th>
 			<th class="hidden-xs">
-				 Engine version
-			</th>y
+				 Usecase Version
+			</th>
+			<th>
+				 Function point
+			</th>
 			<th class="hidden-xs">
-				 CSS grade
+				 Function Cost
+			</th>
+			<th class="hidden-xs">
+				 Function Version
 			</th>
 		</tr>
 		</thead>
@@ -136,16 +157,22 @@
 				 {{item.projectName}}
 			</td>
 			<td>
-				 {{item.description}}
+				 {{item.usecaseTotalPoint}}
 			</td>
 			<td>
-				 Win 95+
+				{{item.usecaseTotalCost}}
 			</td>
 			<td>
-				 4
+				{{item.usecaseVersion}}
 			</td>
 			<td>
-				 X
+				{{item.functionTotalPoint}}
+			</td>
+			<td>
+				{{item.functionTotalCost}}
+			</td>
+			<td>
+				{{item.functionVersion}}
 			</td>
 		</tr>
 		</tbody>

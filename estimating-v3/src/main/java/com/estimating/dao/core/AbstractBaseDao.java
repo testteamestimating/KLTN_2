@@ -1,6 +1,9 @@
 package com.estimating.dao.core;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -112,5 +115,24 @@ public abstract class AbstractBaseDao<T> implements IBaseDao<T> {
 		}
 	}
 	
+	protected Query getQueryForObject(String stringQuery) {
+		if(queryType.equals(estimatingConstants.getJpqlQuery())) {
+			return entityManager.createQuery(stringQuery);
+		} else {
+				return entityManager.createNativeQuery(stringQuery);
+			}
+	}
+	
+	protected List<Map<String, String>> convertObjectsToMap(List<Object[]> objects, List<String> keys) {
+		List<Map<String, String>> results = new ArrayList<Map<String, String>>();
+		for (Object[] object : objects) {
+			Map<String, String> map = new HashMap<String, String>(keys.size()); // or object.length
+			for (int i = 0; i < object.length; i++) {
+				map.put(keys.get(i), object[i].toString());
+			}
+			results.add(map);
+		}
+		return results;
+	}
 
 }

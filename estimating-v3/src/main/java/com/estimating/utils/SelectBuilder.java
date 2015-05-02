@@ -32,6 +32,10 @@ public class SelectBuilder {
     public SelectBuilder(String table) {
         tables.add(table);
     }
+    
+    public List<String> getColumns() {
+		return columns;
+	}
 
     private void appendList(StringBuilder sql, List<String> list, String init,
 String sep) {
