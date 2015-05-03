@@ -31,8 +31,20 @@ app.controller('userCtrl', function($scope, $rootScope, $http) {
 		error(function() {
 		});
 	}
+	
+	$scope.changePassword = function(){
+		var url = "user/change-password";
+		var requestObject = $scope.initUserObject();
+		$http.post(url, requestObject).
+		success(function(response) {
+			alert("Passowrd change successfully!");
+		}).
+		error(function() {
+		});
+	}
 })
-var app = angular.module('signup', ['ui.router'])
+
+ var app = angular.module('signup', ['ui.router'])
 .controller('ngClickController', function($scope, $http){
 	$scope.addNewUser = function() {
 		var url = "signup";
