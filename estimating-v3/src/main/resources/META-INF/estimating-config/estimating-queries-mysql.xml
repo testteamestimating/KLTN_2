@@ -168,28 +168,20 @@
 					</value>
 				</entry>
 				
-				<!-- khoi tao  -->
-				<entry key="from">
+				<!-- find list project for search all  -->
+				<entry key="findListProjectSearchAll">
 					<value>
 						<![CDATA[
-							select * from project ;
+							select project_name, usecase_point.usecase_total_point, usecase_point.usecase_version, 
+							function_point.function_total_point, function_point.function_version 
+							from project left join usecase_point on project.p_id = usecase_point.project 
+							left join function_point on project.p_id = function_point.project 
+							where project.username = :username ;
 						]]>
 					</value>
 				</entry>
-				<entry key="where">
-					<value>
-						<![CDATA[
-							where :dk;
-						]]>
-					</value>
-				</entry>
-				<entry key="join">
-					<value>
-						<![CDATA[
-							join :table
-						]]>
-					</value>
-				</entry>
+				
+				
 			</map>
 		</constructor-arg>
 	</bean>

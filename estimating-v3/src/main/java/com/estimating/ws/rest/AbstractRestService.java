@@ -3,8 +3,8 @@ package com.estimating.ws.rest;
 import org.springframework.web.client.RestTemplate;
 
 public class AbstractRestService {
-	protected String urlUseCasePoint = "http://localhost:8888/usecasepoint/";
-	protected String urlFunctionPoint = "http://localhost:8888/functionpoint/";
+	protected String urlUseCasePoint = "http://estimating-rest-ws.elasticbeanstalk.com/usecasepoint/";
+	protected String urlFunctionPoint = "http://estimating-rest-ws.elasticbeanstalk.com/functionpoint/";
 	RestTemplate restTemplate;
 
 	/**

@@ -13,6 +13,7 @@ public class ProjectBean implements Serializable {
 	private int id;
 	private String username;
 	private int projectTypeId;
+	private String fileName;
 
 	public ProjectBean() {
 		super();
@@ -26,7 +27,29 @@ public class ProjectBean implements Serializable {
 		this.id = projectId;
 		this.username = username;
 	}
+	
+	
 
+	/**
+	 * @return the fileName
+	 */
+	public String getFileName() {
+		return fileName;
+	}
+
+	/**
+	 * @param fileName the fileName to set
+	 */
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	/**
+	 * @return the serialversionuid
+	 */
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	public String getProjectName() {
 		return projectName;

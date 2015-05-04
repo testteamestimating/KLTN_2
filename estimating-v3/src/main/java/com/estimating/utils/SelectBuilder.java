@@ -24,7 +24,7 @@ public class SelectBuilder {
     private List<String> onTable = new ArrayList<String>();
     
     private List<String> inner = new ArrayList<String>();
-
+    
     public SelectBuilder() {
 
     }
@@ -86,6 +86,8 @@ String sep) {
         return this;
     }
     
+    
+    
     public SelectBuilder on(String col1, String col2) {
     	onTable.add(col1 + " = " + col2);
     	
@@ -97,8 +99,8 @@ String sep) {
     	return this;
     }
     
-    public SelectBuilder leftJoin(String join) {
-        leftJoins.add(join);
+    public SelectBuilder leftJoin(String table, String col1, String col2) {
+        leftJoins.add(" left join " + table + " on " + col1 + " = " + col2);
         return this;
     }
 
@@ -122,7 +124,7 @@ String sep) {
         appendList(sql, inner, " ", " ");
         appendList(sql, joins, " inner join ", " inner join ");
         appendList(sql, onTable, " on " , " on ");
-        appendList(sql, leftJoins, " left join ", " left join ");
+        appendList(sql, leftJoins, " ", " ");
         appendList(sql, wheres, " where ", " and ");
         appendList(sql, groupBys, " group by ", ", ");
         appendList(sql, havings, " having ", " and ");

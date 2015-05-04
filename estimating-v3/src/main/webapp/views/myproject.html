@@ -1,30 +1,3 @@
- <div class="row">
- 	 <p>list project </p>
-	 <select class="form-control select2me" data-placeholder="Select..." ng-model="id">
-	 	<option ng-repeat="item in projects" value="{{item.id}}" >{{item.projectName}}</option>
-	 </select>
- </div>
- <div class="row">
- 	<p>project name</p>
-	 <input type="text" class="form-control input-circle" ng-model="newname"  placeholder="{{projects[id-1].projectName}}" >
-	 New name is: <span ng-bind="newname"></span>
- </div>
-<!--  <button type="button" class="btn blue" ng-click="getProjectId()">CREATE</button> -->
- <div class="row">
- 	<p>project description</p>
- 	<input type="text" class="form-control input-circle" ng-model="newdescription" placeholder="{{projects[id-1].description}}">
- 	New name is: <span ng-bind="newdescription"></span>
- </div>
- <div class="row">
- 	Old projecttype: <span ng-bind="projects[id-1].projecttypeId"></span>
- 	<p>choose new project type</p>
- 	<select class="form-control select2me" ng-model="projectTypeId" data-placeholder="Select...">
- 		<option ng-repeat="item in projectTypes" placeholder="along"  value="{{item.id}}" >{{item.typeName}}</option>
- 	</select>
- </div>
- <button type="button" class="btn blue" ng-click="updateProject()">CHANGE</button>
- <button type="button" class="btn blue" ng-click="load()">load</button>
- 
 <div class="row">
 	<div class="col-md-12 ">
 		<!-- BEGIN Portlet PORTLET-->
@@ -48,12 +21,19 @@
 					    </md-checkbox>
 						</td>
 						<td class="col-md-5">
-							<span>UsecasePoint minimum value:</span>
+							<div style="float:left; width:calc(100% - 160px); min-width: 160px;">UsecasePoint minimum value:</div>
 							<input id="mask_number" ng-model = "usecaseMin" style="text-align: right;" type="text">
+							<span ng-bind="alert1" style="color: red; float: right;"></span>
 						</td>
-						<td class="col-md-5:">
-							<span>UsecasePoint max value:</span>
+						<td class="col-md-5">
+							<div style="float:left; width:calc(100% - 160px); min-width: 160px;">UsecasePoint max value:</div>
 							<input id="mask_number" ng-model = "usecaseMax" style="text-align: right;" type="text">
+							<span ng-bind="alert2" style="color: red; float: right;"></span>
+						</td>
+					</tr>
+					<tr class="col-md-12">
+						<td>
+							<span ng-bind="alertUsecasePoint" style="color: red; float: right;">"></span>
 						</td>
 					</tr>
 					<tr>
@@ -63,12 +43,19 @@
 					    </md-checkbox>
 						</td>
 						<td class="col-md-5">
-							<span>FunctionPoint minimum value:</span>
+							<div style="float:left; width:calc(100% - 160px); min-width: 160px; ">FunctionPoint minimum value:</div>
 							<input id="mask_number" ng-model = "functionMin" style="text-align: right;" type="text">
+							<span ng-bind="alert3" style="color: red; float: right;">"></span>
 						</td>
-						<td class="col-md-5:">
-							<span>FunctionPoint max value:</span>
+						<td class="col-md-5">
+							<div style="float:left; width:calc(100% - 160px); min-width: 160px; ">FunctionPoint max value:</div>
 							<input id="mask_number" ng-model = "functionMax" style="text-align: right;" type="text">
+							<span ng-bind="alert4" style="color: red; float: right;">"></span>
+						</td>
+					</tr>
+					<tr class="col-md-12">
+						<td>
+							<span ng-bind="alertFunctionPoint" style="color: red;"></span>
 						</td>
 					</tr>
 					<tr>
@@ -78,12 +65,19 @@
 					    </md-checkbox>
 						</td>
 						<td class="col-md-5">
-							<span>Minimun project cost with usecase:</span>
+							<div style="float:left; width:calc(100% - 160px); min-width: 160px; ">Minimun project cost with usecase:</div>
 							<input id="mask_number" ng-model = "usecaseCostMin" style="text-align: right;" type="text">
+							<span ng-bind="alert5" style="color: red; float: right;">"></span>
 						</td>
-						<td class="col-md-5:">
-							<span>Maximun project cost with usecase:</span>
+						<td class="col-md-5">
+							<div style="float:left; width:calc(100% - 160px); min-width: 160px; ">Maximun project cost with usecase:</div>
 							<input id="mask_number" ng-model = "usecaseCostMax" style="text-align: right;" type="text">
+							<span ng-bind="alert6" style="color: red; float: right;">"></span>
+						</td>
+					</tr>
+					<tr class="col-md-12">
+						<td>
+							<span ng-bind="alertUsecaseCost" style="color: red;"></span>
 						</td>
 					</tr>
 					<tr>
@@ -93,12 +87,19 @@
 					    </md-checkbox>
 						</td>
 						<td class="col-md-5">
-							<span>Minimun project cost with function:</span>
+							<div style="float:left; width:calc(100% - 160px); min-width: 160px; ">Minimun project cost with function:</div>
 							<input id="mask_number" ng-model = "functionCostMin" style="text-align: right;" type="text">
+							<span ng-bind="alert7" style="color: red; float: right;">"></span>
 						</td>
-						<td class="col-md-5:">
-							<span>Maximun project cost with function:</span>
+						<td class="col-md-5">
+							<div style="float:left; width:calc(100% - 160px); min-width: 160px; ">Maximun project cost with function:</div>
 							<input id="mask_number" ng-model = "functionCostMax" style="text-align: right;" type="text">
+							<span ng-bind="alert8" style="color: red; float: right;">"></span>
+						</td>
+					</tr>
+					<tr class="col-md-12">
+						<td>
+							<span ng-bind="alertFunctionCost" style="color: red;"></span>
 						</td>
 					</tr>
 				</table>
@@ -107,6 +108,7 @@
 								<p>&nbsp</p>
 						</div>
 					</div>
+					<span ng-bind="alertRoot" style="color: red;"></span>
 					<div class="row">
 						<div class="col-md-offset-9 col-md-3">
 								<button type="submit" class="btn green" ng-click="show()" ><i class="fa fa-check"></i> Search</button>
@@ -125,57 +127,150 @@
 		</div>
 	</div>
 	<div class="portlet-body">
-		<table class="table table-striped table-hover" id="sample_5">
+		<table class="table table-striped table-hover" id="example">
 		<thead>
 		<tr>
 			<th>
 				 Project Name
 			</th>
 			<th>
-				 Usecase point
+				 UCP
 			</th>
 			<th class="hidden-xs">
-				 Usecase Cost
+				 UCP Cost
 			</th>
 			<th class="hidden-xs">
-				 Usecase Version
+				UCP Ver
 			</th>
 			<th>
-				 Function point
+				 FP
 			</th>
 			<th class="hidden-xs">
-				 Function Cost
+				FP Cost
 			</th>
 			<th class="hidden-xs">
-				 Function Version
+				FP Ver
 			</th>
 		</tr>
 		</thead>
-		<tbody>
-		<tr  ng-repeat="item in projects" ng-class="rowClass(item)" >
-			<td>
-				 {{item.projectName}}
-			</td>
-			<td>
-				 {{item.usecaseTotalPoint}}
-			</td>
-			<td>
-				{{item.usecaseTotalCost}}
-			</td>
-			<td>
-				{{item.usecaseVersion}}
-			</td>
-			<td>
-				{{item.functionTotalPoint}}
-			</td>
-			<td>
-				{{item.functionTotalCost}}
-			</td>
-			<td>
-				{{item.functionVersion}}
-			</td>
-		</tr>
-		</tbody>
+		
 		</table>
+		<div class="row">
+			<div class="col-md-offset-9 col-md-3">
+					<button type="submit" class="btn green" ng-click="searchAll()" ><i class="fa fa-check"></i> See All</button>
+				</div>
+		</div>
 	</div>
 </div>
+
+<div>
+  <md-content class="md-padding">
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="one">
+        <md-content class="md-padding">
+         	<!-- Simple Table -->
+				<label class="col-md-3">User simple name: </label>
+				<div class="form-horizontal">
+					<div class="row col-md-9">
+						<div class="col-md-8">
+							<input type="text" class="form-control"	ng-model="$root.uSimpleValue" />
+						</div>
+						<div class="col-md-1">								
+							<input value="Add" ng-click="addRowSimple()" class="btn btn-primary"/>
+						</div>
+					</div>
+				</div>
+			  <table class="table">
+					<tr ng-repeat="uSimple in uSimples" class="row col-md-12">
+						<td class="col-md-10">{{uSimple}}</td>
+						<td class="col-md-2">
+						<input type="button" value="Remove" class="btn btn-danger" ng-click="removeRowSimple(uSimple.uSimpleValue)"/>
+						</td>
+					</tr>
+				</table>
+			<!-- End Simple Table -->  
+        </md-content>
+      </md-tab>
+      <md-tab label="two">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Tab Two</h1>
+          <p>Lorem ipsum dolor sit amet, nec luctus mauris semper.</p>
+        </md-content>
+      </md-tab>
+      <md-tab label="three">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Tab Three</h1>
+          <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+        </md-content>
+      </md-tab>
+      <md-tab label="Document">
+        <md-content class="md-padding">
+        	<button type="submit" class="btn red" ng-click="searchAll()" tabindex="0"><i class="fa fa-check"></i> Remove</button>
+        	<button type="submit" class="btn blue" ng-click="searchAll()" tabindex="0"><i class="fa fa-check"></i> Read</button>
+        	<button type="submit" class="btn green" ng-click="searchAll()" tabindex="0"><i class="fa fa-check"></i> Upload</button>
+        </md-content>
+      </md-tab>
+    </md-tabs>
+  </md-content>
+</div>
+
+
+<div  layout="column" style="height:300px;">
+  <section layout="row" flex>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Sidenav Left</h1>
+      </md-toolbar>
+      <md-content layout-padding >
+        <md-button ng-click="close()" class="md-primary" hide-gt-md>
+          Close Sidenav Left
+        </md-button>
+        <p hide-md show-gt-md>
+          This sidenav is locked open on your device. To go back to the default behavior,
+          narrow your display.
+        </p>
+      </md-content>
+    </md-sidenav>
+    <md-content flex layout-padding>
+      <div layout="column" layout-fill layout-align="top center">
+        <p>
+        The left sidenav will 'lock open' on a medium (>=960px wide) device.
+        </p>
+        <p>
+        The right sidenav will focus on a specific child element.
+        </p>
+        <div>
+          <md-button ng-click="toggleLeft()"
+            class="md-primary" hide-gt-md>
+            Toggle left
+          </md-button>
+        </div>
+        <div>
+          <md-button ng-click="toggleRight()"
+            class="md-primary">
+            Toggle right
+          </md-button>
+        </div>
+      </div>
+      <div flex></div>
+    </md-content>
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" style="width:815px; height: 650px;  max-width: 815px !important;">
+      <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">Sidenav Right</h1>
+      </md-toolbar>
+      <md-content  layout-padding>
+        <form>
+          <md-input-container>
+            <label for="testInput">Test input</label>
+            <input type="text" id="testInput"
+                   ng-model="data" md-sidenav-focus>
+          </md-input-container>
+        </form>
+        <md-button ng-click="close()" class="md-primary">
+          Close Sidenav Right
+        </md-button>
+      </md-content>
+    </md-sidenav>
+  </section>
+</div>
+

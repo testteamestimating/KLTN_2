@@ -35,6 +35,9 @@ public class Project extends BaseEntity {
 	@Column(name = "description")
 	private String description;
 	
+	@Column(name="fileName")
+	private String fileName;
+	
 	@OneToMany(mappedBy = "project")
 	private List<UsecasePoint> usecasePoints;
 	
@@ -43,6 +46,7 @@ public class Project extends BaseEntity {
 	
 	@OneToMany(mappedBy = "project")
 	private List<Shared> shareds;
+	
 	
 	/**
 	 * @return the shareds
@@ -88,6 +92,21 @@ public class Project extends BaseEntity {
 	 */
 	public Project() {
 		super();
+	}
+
+	
+	/**
+	 * @return the fileName
+	 */
+	public String getFileName() {
+		return fileName;
+	}
+
+	/**
+	 * @param fileName the fileName to set
+	 */
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	/**

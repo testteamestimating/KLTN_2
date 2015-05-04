@@ -43,6 +43,7 @@
 
 <link href="lib/bootstrap-expandable-input.css" rel="stylesheet" type="text/css"/>
 <link href="lib/bootstrap-editable-table.css" rel="stylesheet" type="text/css"/>
+<link href="lib/assets/global/plugins/datatables/examples/resources/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/>
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
 </head>
@@ -439,6 +440,8 @@
 <script src="lib/angular-sanitize.js"></script>
 <script src="lib/angular-ui-router.min.js" type="text/javascript"></script>
 <script src="lib/angular-route.js" type="text/javascript"></script>
+<!-- Datatable -->
+<script src="lib/datatable/angular-datatables.js" type="text/javascript"></script>
 
 <!-- Estimating Javascript -->
 <script src="js/app.js" type="text/javascript"></script>

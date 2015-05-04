@@ -39,7 +39,13 @@ app.controller('usecaseCtrl', function($scope, $rootScope, $http) {
 		error(function() {
 		});
 	};
-	
+	/*
+	if($scope.state.name == "myproject") {
+		$scope.uSimples = [
+		     "long", "hung"           
+		 ];
+	}
+	*/
 	$scope.initProjectObject = function() {
 		var object = {
 			"projectName" : $scope.projectName,
@@ -107,11 +113,6 @@ app.controller('usecaseCtrl', function($scope, $rootScope, $http) {
 		$scope.uSimples.splice( index, 1 );		
 	};
 	
-	
-	
-	
-	
-	
 	/*
 	 * add user average
 	 */
@@ -165,7 +166,7 @@ app.controller('usecaseCtrl', function($scope, $rootScope, $http) {
 	 */
 	$scope.aSimples = [];
 	
-	$scope.addRowaSimple = function(){	
+	$scope.addRowaSimple = function(){
 		$scope.aSimples.push({ 'asimpleValue': $scope.asimpleValue });
 		$scope.asimpleValue='';
 	};
@@ -194,7 +195,7 @@ app.controller('usecaseCtrl', function($scope, $rootScope, $http) {
 		$scope.aAverageValue='';
 	};
 	
-	$scope.removeaAverage = function(aAverageValue){				
+	$scope.removeaAverage = function(aAverageValue){
 		var index = -1;		
 		var comArr = eval( $scope.aAverages );
 		for( var i = 0; i < comArr.length; i++ ) {

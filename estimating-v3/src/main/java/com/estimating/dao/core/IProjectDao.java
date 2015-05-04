@@ -18,5 +18,6 @@ public interface IProjectDao extends IBaseDao<Project> {
 	public List<Project> findListProjectOfUserVipByUsername(String username);
 	public List<Project> findListProjectOfUserRegularByUsername(String username);
 	public List<ProjectResultBean> search(Map<String, Object> request);
+	public List<ProjectResultBean> findListProjectSearchAll(String username);
 	
 }

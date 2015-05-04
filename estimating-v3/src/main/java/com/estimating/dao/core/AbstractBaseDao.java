@@ -128,6 +128,9 @@ public abstract class AbstractBaseDao<T> implements IBaseDao<T> {
 		for (Object[] object : objects) {
 			Map<String, String> map = new HashMap<String, String>(keys.size()); // or object.length
 			for (int i = 0; i < object.length; i++) {
+				if(object[i] == null) {
+					object[i] = "N/A";
+				}
 				map.put(keys.get(i), object[i].toString());
 			}
 			results.add(map);

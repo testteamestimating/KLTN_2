@@ -1,5 +1,5 @@
 'use-strict'
-var app = angular.module('estimatingApp', ['ui.router', 'ngMaterial', 'ngSanitize']);
+var app = angular.module('estimatingApp', ['ui.router', 'ngMaterial', 'ngSanitize', 'datatablesDirectives']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
     
