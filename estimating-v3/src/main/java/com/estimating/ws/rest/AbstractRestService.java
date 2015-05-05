@@ -4,7 +4,10 @@ import org.springframework.web.client.RestTemplate;
 
 public class AbstractRestService {
 	protected String urlUseCasePoint = "http://estimating-rest-ws.elasticbeanstalk.com/usecasepoint/";
+
 	protected String urlFunctionPoint = "http://estimating-rest-ws.elasticbeanstalk.com/functionpoint/";
+
+
 	RestTemplate restTemplate;
 
 	/**

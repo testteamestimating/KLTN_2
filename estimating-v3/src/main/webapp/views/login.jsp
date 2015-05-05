@@ -149,6 +149,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	</form>
 	<!-- END FORGOT PASSWORD FORM -->
 	<!-- BEGIN REGISTRATION FORM -->
+	<form class="register-form">
 		<h3>Sign Up</h3>
 		<p>
 			 Enter your personal details below:

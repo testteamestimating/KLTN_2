@@ -448,6 +448,7 @@
 <script src="js/projectCtrl.js" type="text/javascript"></script>
 <script src="js/usecaseCtrl.js" type="text/javascript"></script>
 <script src="js/filter.js" type="text/javascript"></script>
+<script src="js/user.js" type="text/javascript"></script>
 
 <!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
